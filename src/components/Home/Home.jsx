@@ -14,7 +14,7 @@ export default function Home() {
     const fetchAllSurah = async () => {
       try {
         const response = await axios.get(
-          'http://api.alquran.cloud/v1/quran/quran-uthmani',
+          'https://api.alquran.cloud/v1/quran/quran-uthmani',
         )
         const surahs = response.data.data.surahs
 

@@ -14,7 +14,7 @@ export default function Surah() {
     const getSurah = async () => {
       try {
         const response = await axios.get(
-          `http://api.alquran.cloud/v1/surah/${number}/editions/quran-uthmani`,
+          `https://api.alquran.cloud/v1/surah/${number}/editions/quran-uthmani`,
         )
         const surah = response.data.data
         setFullSurah(surah)
