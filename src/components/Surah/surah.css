@@ -1,0 +1,46 @@
+.surah-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.surah {
+  width: 550px;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  gap: 15px;
+  margin: 50px;
+  padding: 10px;
+  border: 10px solid rgb(167, 151, 63);
+  background-color: #fff;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+.ayah-number {
+  background-color: beige;
+  font-size: 14px;
+  border-radius: 50%;
+  padding-inline: 3px;
+  border: 1px solid #bbbb;
+  margin-right: 5px;
+}
+
+.surah-container:nth-child(odd) {
+  color: rgb(101, 101, 97);
+}
+
+@media (max-width: 800px) {
+  .surah {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    gap: 18px;
+  }
+}

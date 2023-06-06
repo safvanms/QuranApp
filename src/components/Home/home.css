@@ -1,0 +1,61 @@
+.home-container {
+     position: relative;
+     display: flex;
+     justify-content: center;
+     height: 100%;
+     background-color: black;
+     background-image: url("https://wallpaperstock.net/wallpapers/thumbs1/51439hd.jpg");
+     background-attachment: fixed;
+     background-size: cover;
+   }
+
+
+.home-sec {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-inline: 10px;
+  border-radius: 15px;
+  border: 1px solid #bbbbbb3b;
+  background-color: #ffff ;
+  margin: 15px 0px 15px 0px;
+}
+
+@media (max-width: 800px) {
+  .home-sec {
+    width: 100%;
+  }
+  .surah-list span:nth-child(3) {
+    font-size: 20px !important;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  .surah-list {
+    padding: 10px !important;
+  }
+}
+
+.surah-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #bbbbbba0;
+  transition: background-color 0.3s;
+}
+
+.surah-list:hover {
+  background-color: #ede9e9ea;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.surah-list span:nth-child(1) {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.surah-list span:nth-child(3) {
+  font-size: 20px;
+  font-weight: bold;
+}
