@@ -14,9 +14,9 @@ export default function Surah() {
     const getSurah = async () => {
       try {
         const response = await axios.get(
-          `https://api.alquran.cloud/v1/surah/${number}/editions/quran-uthmani`,
+          'http://localhost:5000/quran',
         )
-        const surah = response.data.data
+        const surah = response.data.data.surahs[number-1].ayahs
         setFullSurah(surah)
       } catch (error) {
         console.log(error)
@@ -25,12 +25,12 @@ export default function Surah() {
     getSurah()
   }, [number])
 
+
   return (
     <div className="surah-page">
       <div className="surah">
-        {fullSurah &&
-          fullSurah.length > 0 ?
-          fullSurah[0].ayahs.map((ayah) => (
+        {fullSurah ?
+          fullSurah.map((ayah) => (
             <div className="surah-container">
               <div key={ayah.number}>
                 <span className='ayahs'>{ayah.text}</span>

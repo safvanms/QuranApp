@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Header from '../Other/Header'
 import Footer from '../Other/Footer'
 
+
 export default function Home() {
   const [surahNumber, setSurahNumber] = useState([])
   const [surahNames, setSurahNames] = useState([])
@@ -14,7 +15,7 @@ export default function Home() {
     const fetchAllSurah = async () => {
       try {
         const response = await axios.get(
-          'https://api.alquran.cloud/v1/quran/quran-uthmani',
+          'http://localhost:5000/quran',
         )
         const surahs = response.data.data.surahs
 
@@ -32,6 +33,7 @@ export default function Home() {
 
     fetchAllSurah()
   }, [])
+
 
   return (
     <>
