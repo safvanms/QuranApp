@@ -37,7 +37,7 @@ export default function Surah() {
                 <span className="ayah-number">{ayah.numberInSurah}</span>
               </div>
             </div>
-          )): <p style={{textAlign:"center"}} >Please wait...</p> }
+          )): <p style={{marginRight:"30%"}} >Please wait...</p> }
       </div>
     </div>
   )

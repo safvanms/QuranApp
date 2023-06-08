@@ -10,8 +10,6 @@
   font-size: 20px;
   font-weight: bold;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
   flex-direction: row-reverse;
   gap: 15px;
@@ -20,7 +18,9 @@
   border: 10px solid rgb(167, 151, 63);
   background-color: #fff;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: right;
 }
+
 
 
 .ayah-number {

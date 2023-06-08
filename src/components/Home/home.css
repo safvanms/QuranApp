@@ -11,13 +11,11 @@
 
 
 .home-sec {
-  width: 400px;
+  width: 450px;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding-inline: 10px;
   border-radius: 15px;
-  border: 1px solid #bbbbbb3b;
   background-color: #ffff ;
   margin: 15px 0px 15px 0px;
 }
@@ -40,9 +38,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #bbbbbba0;
+  border: 1px solid #8ec5875e;
   transition: background-color 0.3s;
+  margin: 5px;
+  border-radius: 10px;
 }
+
 
 .surah-list:hover {
   background-color: #ede9e9ea;
@@ -56,6 +57,6 @@
 }
 
 .surah-list span:nth-child(3) {
-  font-size: 20px;
+  font-size: 23px !important;
   font-weight: bold;
 }
