@@ -40,7 +40,7 @@ export default function Home() {
       <Header />
       <div className="home-container">
         <div className="home-sec">
-          {surahNumber.map((number, index) => (
+          {surahNumber?surahNumber.map((number, index) => (
             <Link
               style={{ color: 'black', textDecoration: 'none' }}
               to={`/${number}`}
@@ -53,7 +53,7 @@ export default function Home() {
                 </span>
               </div>
             </Link>
-          ))}
+          )):"No Surah found !"}
         </div>
       </div>
       <Footer />
