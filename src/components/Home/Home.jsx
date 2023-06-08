@@ -6,30 +6,30 @@ import Header from '../Other/Header'
 import Footer from '../Other/Footer'
 
 export default function Home() {
-  const [surahNumber, setSurahNumber] = useState([])
-  const [surahNames, setSurahNames] = useState([])
-  const [englishName, setEnglishName] = useState([])
+  // const [surahNumber, setSurahNumber] = useState([])
+  // const [surahNames, setSurahNames] = useState([])
+  // const [englishName, setEnglishName] = useState([])
 
-  useEffect(() => {
-    const fetchAllSurah = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/quran')
-        const surahs = response.data.data.surahs
+  // useEffect(() => {
+  //   const fetchAllSurah = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:5000/quran')
+  //       const surahs = response.data.data.surahs
 
-        const surahNumbers = surahs.map((surah) => surah.number)
-        const surahNames = surahs.map((surah) => surah.name)
-        const englishName = surahs.map((surah) => surah.englishName)
+  //       const surahNumbers = surahs.map((surah) => surah.number)
+  //       const surahNames = surahs.map((surah) => surah.name)
+  //       const englishName = surahs.map((surah) => surah.englishName)
 
-        setSurahNumber(surahNumbers)
-        setSurahNames(surahNames)
-        setEnglishName(englishName)
-      } catch (error) {
-        console.log(error)
-      }
-    }
+  //       setSurahNumber(surahNumbers)
+  //       setSurahNames(surahNames)
+  //       setEnglishName(englishName)
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
 
-    fetchAllSurah()
-  }, [])
+  //   fetchAllSurah()
+  // }, [])
 
   const data = [
     {
