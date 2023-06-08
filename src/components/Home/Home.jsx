@@ -9,10 +9,12 @@ export default function Home() {
   const [surahNumber, setSurahNumber] = useState([])
   const [surahNames, setSurahNames] = useState([])
   const [englishName, setEnglishName] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const fetchAllSurah = async () => {
       try {
+        setLoading(true)
         const response = await axios.get('http://localhost:5000/quran')
         const surahs = response.data.data.surahs
 
@@ -26,6 +28,7 @@ export default function Home() {
       } catch (error) {
         console.log(error)
       }
+      setLoading(false)
     }
 
     fetchAllSurah()
@@ -36,6 +39,7 @@ export default function Home() {
   return (
     <>
       <Header />
+      {loading && <h1 style={{textAlign:"center"}}>Loading...</h1>}
       <div className="home-container">
         <div className="home-sec">
           {surahNumber?.map((number, index) => (
