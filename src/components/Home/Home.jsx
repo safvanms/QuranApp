@@ -20,11 +20,6 @@ export default function Home() {
         const surahNames = surahs.map((surah) => surah.name);
         const englishName = surahs.map((surah) => surah.englishName);
   
-        // Save data into localStorage
-        localStorage.setItem('surahNumbers', JSON.stringify(surahNumbers));
-        localStorage.setItem('surahNames', JSON.stringify(surahNames));
-        localStorage.setItem('englishName', JSON.stringify(englishName));
-  
         setSurahNumber(surahNumbers);
         setSurahNames(surahNames);
         setEnglishName(englishName);
@@ -35,14 +30,6 @@ export default function Home() {
   console.log('entered');
     fetchAllSurah();
   
-    // Cleanup function to remove data from localStorage when the component unmounts
-    return () => {
-      localStorage.removeItem('surahNumbers');
-      localStorage.removeItem('surahNames');
-      localStorage.removeItem('englishName');
-  console.log('gone');
-
-    };
   }, []);
   
 

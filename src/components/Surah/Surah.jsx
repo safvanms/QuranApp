@@ -17,7 +17,6 @@ export default function Surah() {
           'http://localhost:5000/quran',
         )
         const surah = response.data.data.surahs[number-1].ayahs
-        localStorage.setItem('surah',JSON.stringify(surah))
       console.log('surah stored');
         setFullSurah(surah)
       } catch (error) {
@@ -26,10 +25,6 @@ export default function Surah() {
     }
     getSurah()
 
-    return()=>{
-      localStorage.removeItem('surah')
-      console.log('surah deleted');
-    }
 
   }, [number])
 
