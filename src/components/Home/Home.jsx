@@ -9,37 +9,48 @@ export default function Home() {
   const [surahNumber, setSurahNumber] = useState([])
   const [surahNames, setSurahNames] = useState([])
   const [englishName, setEnglishName] = useState([])
-  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const fetchAllSurah = async () => {
       try {
-        setLoading(true)
-        const response = await axios.get('http://localhost:5000/quran')
-        const surahs = response.data.data.surahs
-
-        const surahNumbers = surahs.map((surah) => surah.number)
-        const surahNames = surahs.map((surah) => surah.name)
-        const englishName = surahs.map((surah) => surah.englishName)
-
-        setSurahNumber(surahNumbers)
-        setSurahNames(surahNames)
-        setEnglishName(englishName)
+        const response = await axios.get('http://localhost:5000/quran');
+        const surahs = response.data.data.surahs;
+  
+        const surahNumbers = surahs.map((surah) => surah.number);
+        const surahNames = surahs.map((surah) => surah.name);
+        const englishName = surahs.map((surah) => surah.englishName);
+  
+        // Save data into localStorage
+        localStorage.setItem('surahNumbers', JSON.stringify(surahNumbers));
+        localStorage.setItem('surahNames', JSON.stringify(surahNames));
+        localStorage.setItem('englishName', JSON.stringify(englishName));
+  
+        setSurahNumber(surahNumbers);
+        setSurahNames(surahNames);
+        setEnglishName(englishName);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-      setLoading(false)
-    }
+    };
+  console.log('entered');
+    fetchAllSurah();
+  
+    // Cleanup function to remove data from localStorage when the component unmounts
+    return () => {
+      localStorage.removeItem('surahNumbers');
+      localStorage.removeItem('surahNames');
+      localStorage.removeItem('englishName');
+  console.log('gone');
 
-    fetchAllSurah()
-  }, [])
+    };
+  }, []);
+  
 
  
 
   return (
     <>
       <Header />
-      {loading && <h1 style={{textAlign:"center"}}>Loading...</h1>}
       <div className="home-container">
         <div className="home-sec">
           {surahNumber?.map((number, index) => (
@@ -47,7 +58,6 @@ export default function Home() {
               style={{ color: 'black', textDecoration: 'none' }}
               to={`/${number}`}
             >
-              {console.log(index)}
               <div key={index} className="surah-list">
                 <span>{number}</span>
                 <span style={{ fontSize: '12px', color: 'grey' }}>
