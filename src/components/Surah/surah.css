@@ -60,7 +60,9 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     padding: 15px;
     gap: 18px;
   margin-inline: 5px;
-
+.surah-details{
+padding-inline:15px;
+    }
   }
 
 
