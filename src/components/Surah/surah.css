@@ -7,6 +7,10 @@
   padding-inline: 15%;
 }
 
+.surah-details h1 {
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 .surah-page {
   display: flex;
   justify-content: center;
