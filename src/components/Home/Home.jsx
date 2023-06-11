@@ -58,7 +58,6 @@ export default function Home() {
           )):"no surah names found at this moment"}
         </div>      
       </div>
-hiiii
       <Footer />
     </>
   )
