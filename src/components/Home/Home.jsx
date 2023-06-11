@@ -38,6 +38,7 @@ export default function Home() {
   return (
     <>
       <Header />
+    {surahNumber && "hiiiii" }
       <div className="home-container">
         <div className="home-sec">
           {surahNumber?.map((number, index) => (
