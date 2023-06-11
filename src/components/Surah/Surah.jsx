@@ -14,10 +14,10 @@ export default function Surah() {
     const getSurah = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:5000/quran',
+          'https://api.alquran.cloud/v1/quran/quran-uthmani',
         )
         const surah = response.data.data.surahs[number-1].ayahs
-      console.log('surah stored');
+
         setFullSurah(surah)
       } catch (error) {
         console.log(error)
