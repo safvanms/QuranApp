@@ -57,6 +57,7 @@ export default function Home() {
             </Link>
           )):"no surah names found at this moment"}
         </div>
+        {!surahNumber || !surahName && "no data "}
       </div>
       <Footer />
     </>
