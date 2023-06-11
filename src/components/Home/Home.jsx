@@ -40,7 +40,7 @@ export default function Home() {
       <Header />
       <div className="home-container">
         <div className="home-sec">
-          {surahNumber.length >0 ? surahNumber.map((number) => (
+          {surahNumber ? surahNumber.map((number) => (
             <Link
               style={{ color: 'black', textDecoration: 'none' }}
               to={`/${number}`}
