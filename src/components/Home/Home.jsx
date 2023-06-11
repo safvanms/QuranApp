@@ -57,8 +57,7 @@ export default function Home() {
             </Link>
           )):"no surah names found at this moment"}
         </div>
-        {!surahNumber.length || !surahName.length && "no data "}
-        {surahNumber.length || surahName.length && "data here"}
+        hiii
       </div>
       <Footer />
     </>
