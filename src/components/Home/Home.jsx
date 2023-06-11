@@ -27,7 +27,7 @@ export default function Home() {
         console.log(error);
       }
     };
-  console.log('entered');
+  
     fetchAllSurah();
   
   }, []);
@@ -38,10 +38,9 @@ export default function Home() {
   return (
     <>
       <Header />
-    {surahNumber && "hiiiii" }
       <div className="home-container">
         <div className="home-sec">
-          {surahNumber?.map((number, index) => (
+          {surahNumber.length >=0 ? surahNumber.map((number, index) => (
             <Link
               style={{ color: 'black', textDecoration: 'none' }}
               to={`/${number}`}
@@ -56,7 +55,7 @@ export default function Home() {
                 </span>
               </div>
             </Link>
-          ))}
+          )):"no surah names found"}
         </div>
       </div>
       <Footer />
