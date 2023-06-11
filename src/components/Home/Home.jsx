@@ -55,7 +55,7 @@ export default function Home() {
                 </span>
               </div>
             </Link>
-          )):"no surah names found"}
+          )):"no surah names found at this moment"}
         </div>
       </div>
       <Footer />
