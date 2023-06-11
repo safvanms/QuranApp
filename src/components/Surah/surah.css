@@ -7,40 +7,67 @@
 
 .surah {
   width: 550px;
-  font-size: 20px;
   font-weight: bold;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row-reverse;
   gap: 15px;
   margin: 50px;
-  padding: 10px;
-  border: 10px solid rgb(167, 151, 63);
-  background-color: #fff;
+  padding: 15px;
+  border: 5px double rgb(49, 143, 60);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-align: right;
+  border-radius: 20px;
 }
 
 
-
 .ayah-number {
-  background-color: beige;
+  background-color: rgb(197, 195, 195);
   font-size: 14px;
   border-radius: 50%;
   padding-inline: 3px;
   border: 1px solid #bbbb;
   margin-right: 5px;
+  color: rgb(18, 18, 18);
 }
 
 .surah-container:nth-child(odd) {
   color: rgb(101, 101, 97);
 }
 
+@media (min-width: 801px) {
+.options{
+  display: none;
+}
+  }
+
 @media (max-width: 800px) {
   .surah {
     width: 100%;
-    margin: 0;
-    padding: 10px;
+    padding: 15px;
     gap: 18px;
+  margin-inline: 5px;
+
   }
+
+  .options{
+    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(3, 3, 3);
+    padding: 12px;
+  }
+  
+  
+  .settings select{
+   width: 100px;
+   height: 30px;
+   background-color: rgb(0, 0, 0);
+   color: #fff;
+   border-radius: 10px;
+   border-color: rgb(223, 200, 21);
+  }
+
 }
+
