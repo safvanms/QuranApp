@@ -5,6 +5,7 @@ import axios from 'axios'
 
 export default function Surah() {
   const [fullSurah, setFullSurah] = useState(null)
+  const [surahDetails, setSurahDetails] = useState('')
   const [fontSize, setFontSize] = useState('18px')
   const [darkMode, setDarkMode] = useState(false)
 
@@ -17,7 +18,7 @@ export default function Surah() {
           'https://api.alquran.cloud/v1/quran/quran-uthmani',
         )
         const surah = response.data.data.surahs[number - 1].ayahs
-
+        setSurahDetails(response.data.data.surahs[number - 1])
         setFullSurah(surah)
       } catch (error) {
         console.log(error)
@@ -48,23 +49,42 @@ export default function Surah() {
         </div>
         <div className="darkmode">
           <h3 onClick={handleTheme}>
-            {darkMode ? <span>&#x2600;</span>  : <span>&#x1F319;</span>} </h3>
+            {darkMode ? <span>☀️</span> : <span>&#x1F319;</span>}{' '}
+          </h3>
         </div>
       </div>
 
-      <div className="surah-page" style={{backgroundColor:darkMode?"black":"white"}}>
+      {console.log(surahDetails)}
+
+      {surahDetails && (
+        <div className="surah-details" style={{color:darkMode? 'grey':'',backgroundColor:darkMode?"black":''}}>
+          <p>{surahDetails.revelationType}</p>
+          <h4>{surahDetails.ayahs.length} Aayahs</h4>
+          <h1>{surahDetails.name}</h1>
+        </div>
+      )}
+
+      <div
+        className="surah-page"
+        style={{ backgroundColor: darkMode ? 'black' : 'white' }}
+      >
         <div className="surah" style={{ fontSize }}>
           {fullSurah ? (
             fullSurah.map((ayah) => (
               <div className="surah-container">
                 <div key={ayah.number}>
-                  <span className="ayahs" style={{color:darkMode?"grey":""}}>{ayah.text}</span>
+                  <span
+                    className="ayahs"
+                    style={{ color: darkMode ? 'grey' : '' }}
+                  >
+                    {ayah.text}
+                  </span>
                   <span className="ayah-number">{ayah.numberInSurah}</span>
                 </div>
               </div>
             ))
           ) : (
-            <p style={{ marginRight: '30%' }}>Please wait...</p>
+            <p style={{margin:"0 auto"}}>Please wait while we've fetching ...</p>
           )}
         </div>
       </div>

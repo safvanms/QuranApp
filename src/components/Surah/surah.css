@@ -1,3 +1,12 @@
+.surah-details{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  gap: 20px;
+  padding-inline: 15%;
+}
+
 .surah-page {
   display: flex;
   justify-content: center;
@@ -12,7 +21,7 @@
   flex-wrap: wrap;
   flex-direction: row-reverse;
   gap: 15px;
-  margin: 50px;
+  margin:10px 30px 30px 30px;
   padding: 15px;
   border: 5px double rgb(49, 143, 60);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -50,13 +59,14 @@
 
   }
 
+
   .options{
     display: block;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: rgb(3, 3, 3);
-    padding: 12px;
+    padding:12px 15px 12px 15px;
   }
   
   
