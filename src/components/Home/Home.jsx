@@ -40,18 +40,18 @@ export default function Home() {
       <Header />
       <div className="home-container">
         <div className="home-sec">
-          {surahNumber.length >0 ? surahNumber.map((number, index) => (
+          {surahNumber.length >0 ? surahNumber.map((number) => (
             <Link
               style={{ color: 'black', textDecoration: 'none' }}
               to={`/${number}`}
             >
-              <div key={index} className="surah-list">
+              <div key={number} className="surah-list">
                 <span>{number}</span>
                 <span style={{ fontSize: '12px', color: 'grey' }}>
-                  {englishName[index]}
+                  {englishName[number]}
                 </span>
                 <span className="surah-name">
-                  <span>{surahName[index]}</span>
+                  <span>{surahName[number]}</span>
                 </span>
               </div>
             </Link>
