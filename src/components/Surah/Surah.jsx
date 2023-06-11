@@ -60,7 +60,7 @@ export default function Surah() {
         <div className="surah-details" style={{color:darkMode? 'grey':'',backgroundColor:darkMode?"black":''}}>
           <p>{surahDetails.revelationType}</p>
           <h4>{surahDetails.ayahs.length} Aayahs</h4>
-          <h1>{surahDetails.name}</h1>
+          <h3>{surahDetails.name}</h3>
         </div>
       )}
 
