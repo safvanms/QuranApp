@@ -7,7 +7,7 @@ import Footer from '../Other/Footer'
 
 export default function Home() {
   const [surahNumber, setSurahNumber] = useState([])
-  const [surahNames, setSurahNames] = useState([])
+  const [surahName, setSurahName] = useState([])
   const [englishName, setEnglishName] = useState([])
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function Home() {
         const englishName = surahs.map((surah) => surah.englishName);
   
         setSurahNumber(surahNumbers);
-        setSurahNames(surahNames);
+        setSurahName(surahNames);
         setEnglishName(englishName);
       } catch (error) {
         console.log(error);
@@ -40,7 +40,7 @@ export default function Home() {
       <Header />
       <div className="home-container">
         <div className="home-sec">
-          {surahNumber.length >=0 ? surahNumber.map((number, index) => (
+          {surahNumber.length >0 ? surahNumber.map((number, index) => (
             <Link
               style={{ color: 'black', textDecoration: 'none' }}
               to={`/${number}`}
@@ -51,7 +51,7 @@ export default function Home() {
                   {englishName[index]}
                 </span>
                 <span className="surah-name">
-                  <span>{surahNames[index]}</span>
+                  <span>{surahName[index]}</span>
                 </span>
               </div>
             </Link>
