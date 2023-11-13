@@ -6,9 +6,11 @@ import Header from '../Other/Header'
 import Footer from '../Other/Footer'
 
 export default function Home() {
+  
   const [surahNumber, setSurahNumber] = useState([])
   const [surahName, setSurahName] = useState([])
   const [englishName, setEnglishName] = useState([])
+  const [type, setType] = useState([])
 
 
   useEffect(() => {
@@ -17,13 +19,17 @@ export default function Home() {
         const response = await axios.get('https://api.alquran.cloud/v1/quran/quran-uthmani')
         const surahs = response.data.data.surahs;
 
+        console.log(surahs);
+
         const surahNumbers = surahs.map((surah) => surah.number)
         const surahNames = surahs.map((surah) => surah.name)
         const englishName = surahs.map((surah) => surah.englishName)
+        const typeofAyah = surahs.map((surah) => surah.revelationType)
 
         setSurahNumber(surahNumbers)
         setSurahName(surahNames)
         setEnglishName(englishName)
+        setType(typeofAyah)
       } catch (error) {
         console.log(error)
       }
@@ -31,7 +37,7 @@ export default function Home() {
     fetchAllSurah()
   }, [])
 
-  // console.log(surahName);
+  console.log(surahNumber);
 
 
   return (
@@ -45,16 +51,19 @@ export default function Home() {
               to={`/${number}`}
             >
               <div key={index} className="surah-list">
-                <span>{number}</span>
-                <span style={{ fontSize: '12px', color: 'grey' }}>
+               <div className='surahNumberEngName'>
+                <div>{number}</div>
+                <div style={{ fontSize: '12px', color: 'grey' , marginLeft:"10px"}}>
                   {englishName[index]}
-                </span>
+                </div>
+               </div>
+               <div className="type">{type[index]==='Meccan'?'🕋' :'🕌'}</div>
                 <span className="surah-name">
                   <span>{surahName[index]}</span>
                 </span>
               </div>
             </Link>
-          )):"no surah found at this moment"}
+          )):"Loading ..."}
         </div>
       </div>
       <Footer />

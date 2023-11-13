@@ -54,10 +54,14 @@ export default function Surah() {
         </div>
       </div>
 
-      {console.log(surahDetails)}
-
       {surahDetails && (
-        <div className="surah-details" style={{color:darkMode? 'grey':'',backgroundColor:darkMode?"black":''}}>
+        <div
+          className="surah-details"
+          style={{
+            color: darkMode ? 'grey' : '',
+            backgroundColor: darkMode ? 'black' : '',
+          }}
+        >
           <p>{surahDetails.revelationType}</p>
           <h4>{surahDetails.ayahs.length} Aayahs</h4>
           <h3>{surahDetails.name}</h3>
@@ -84,7 +88,9 @@ export default function Surah() {
               </div>
             ))
           ) : (
-            <p style={{margin:"0 auto"}}>Please wait while we've fetching ...</p>
+            <p style={{ margin: '0 auto' }}>
+              Please wait while we've fetching ...
+            </p>
           )}
         </div>
       </div>
