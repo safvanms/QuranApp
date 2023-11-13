@@ -14,12 +14,26 @@ export default function Surah() {
   useEffect(() => {
     const getSurah = async () => {
       try {
-        const response = await axios.get(
-          'https://api.alquran.cloud/v1/quran/quran-uthmani',
-        )
-        const surah = response.data.data.surahs[number - 1].ayahs
-        setSurahDetails(response.data.data.surahs[number - 1])
-        setFullSurah(surah)
+        // Check if data is present in local storage
+        const storedQuranData = localStorage.getItem('quranData')
+        if (storedQuranData) {
+          const surahs = JSON.parse(storedQuranData)
+          const surah = surahs[number - 1].ayahs
+          setSurahDetails(surahs[number - 1])
+          setFullSurah(surah)
+        } else {
+          // Fetch data from the API if not in local storage
+          const response = await axios.get(
+            'https://api.alquran.cloud/v1/quran/quran-uthmani',
+          )
+          const surahs = response.data.data.surahs
+          const surah = surahs[number - 1].ayahs
+          setSurahDetails(surahs[number - 1])
+          setFullSurah(surah)
+
+          // Store data in local storage
+          localStorage.setItem('quranData', JSON.stringify(surahs))
+        }
       } catch (error) {
         console.log(error)
       }
@@ -75,8 +89,8 @@ export default function Surah() {
         <div className="surah" style={{ fontSize }}>
           {fullSurah ? (
             fullSurah.map((ayah) => (
-              <div className="surah-container">
-                <div key={ayah.number}>
+              <div className="surah-container" key={ayah.number}>
+                <div className="ayahAndNumber">
                   <span
                     className="ayahs"
                     style={{ color: darkMode ? 'grey' : '' }}
@@ -89,7 +103,7 @@ export default function Surah() {
             ))
           ) : (
             <p style={{ margin: '0 auto' }}>
-              Please wait while we've fetching ...
+              Please wait while we're fetching...
             </p>
           )}
         </div>

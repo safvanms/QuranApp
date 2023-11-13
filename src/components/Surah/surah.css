@@ -1,4 +1,4 @@
-.surah-details{
+.surah-details {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,11 +7,9 @@
   padding-inline: 15%;
 }
 
-.surah-details h3{
-font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.surah-details h3 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
-
 
 .surah-page {
   display: flex;
@@ -20,10 +18,9 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   min-height: 80vh;
 }
 
-.ayahs{
-  width: auto;
-}
+.ayahs {
 
+}
 
 .surah {
   max-width: 550px;
@@ -31,8 +28,7 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row-reverse;
-  /* gap: 10px; */
-  margin:10px 30px 30px 30px;
+  margin: 10px 30px 30px 30px;
   padding: 15px;
   border: 2px double rgb(49, 143, 60);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -41,6 +37,9 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   word-spacing: 1px;
 }
 
+.ayahAndNumber{
+  
+}
 
 .ayah-number {
   background-color: rgb(197, 195, 195);
@@ -48,7 +47,7 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   border-radius: 50%;
   padding-inline: 3px;
   border: 1px solid #bbbb;
-  margin-right: 5px;
+  margin: 5px;
   color: rgb(18, 18, 18);
 }
 
@@ -57,42 +56,42 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 @media (min-width: 801px) {
-.options{
-  display: none;
-}
+  .options {
+    display: none;
   }
+}
 
 @media (max-width: 800px) {
   .surah {
     width: 100%;
     padding: 15px;
     /* gap: 18px; */
-  margin-inline: 5px;
+    margin-inline: 5px;
   }
-.surah-details{
-padding-inline:15px;
-  
+
+  .surah-details {
+    padding-inline: 15px;
+
   }
 
 
-  .options{
+  .options {
     display: block;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: rgb(3, 3, 3);
-    padding:12px 15px 12px 15px;
+    padding: 12px 15px 12px 15px;
   }
-  
-  
-  .settings select{
-   width: 100px;
-   height: 30px;
-   background-color: rgb(0, 0, 0);
-   color: #fff;
-   border-radius: 10px;
-   border-color: rgb(223, 200, 21);
+
+
+  .settings select {
+    width: 100px;
+    height: 30px;
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    border-radius: 10px;
+    border-color: rgb(223, 200, 21);
   }
 
 }
-

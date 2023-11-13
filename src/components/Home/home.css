@@ -1,39 +1,39 @@
 .home-container {
-     position: relative;
-     display: flex;
-     height:100%;
-     justify-content: center;
-     background-color: black;
-     background-image: url("https://wallpaperstock.net/wallpapers/thumbs1/51439hd.jpg");
-     background-attachment: fixed;
-     background-size: cover;
-   }
-
-
-.home-sec {
+  position: relative;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  background-color: black;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToSjnAKJHMyAAUf3oPgF_X-AEIoEPcjJ7vmkSDok1v&s");
+  background-attachment: fixed;
+  background-size: cover;
+} 
+  
+.home-sec { 
   width: 450px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   border-radius: 15px;
-  background-color: #ffff ;
+  background-color: #ffff;
   margin: 15px 0px 15px 0px;
 }
 
-.surahNumberEngName{
+.surahNumberEngName {
   justify-content: flex-start;
 }
 
-.surah-name{
+.surah-name {
   display: flex;
-justify-content: flex-end;
+  justify-content: flex-end;
 }
 
-.surahNumberEngName,.surah-name{
+.surahNumberEngName,
+.surah-name {
   width: 40%;
 }
 
-.type{
+.type {
   font-size: 15px;
 }
 
@@ -42,10 +42,12 @@ justify-content: flex-end;
     width: 100%;
     margin-inline: 10px;
   }
+
   .surah-list span:nth-child(3) {
     font-size: 20px !important;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
+
   .surah-list {
     padding: 10px !important;
   }
@@ -62,7 +64,7 @@ justify-content: flex-end;
   border-radius: 10px;
 }
 
-.surahNumberEngName{
+.surahNumberEngName {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -80,6 +82,6 @@ justify-content: flex-end;
 }
 
 .surah-list span:nth-child(3) {
-  font-size: 23px !important;
+  font-size: 21px !important;
   font-weight: bold;
 }
