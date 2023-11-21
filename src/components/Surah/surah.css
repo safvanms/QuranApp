@@ -30,7 +30,7 @@
   flex-direction: row-reverse;
   margin: 10px 30px 30px 30px;
   padding: 15px;
-  border: 2px double rgb(49, 143, 60);
+  /* border: 2px double rgb(49, 143, 60); */
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-align: right;
   border-radius: 20px;
@@ -54,6 +54,35 @@
 .surah-container:nth-child(odd) {
   color: rgb(101, 101, 97);
 }
+
+
+.loadSurah {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.innerLoader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 2px;
+  background-color: #0073b1 !important;
+  animation: moveRight 1s linear infinite; 
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
 
 @media (min-width: 801px) {
   .options {

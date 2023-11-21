@@ -86,7 +86,7 @@ export default function Surah() {
         className="surah-page"
         style={{ backgroundColor: darkMode ? 'black' : 'white' }}
       >
-        <div className="surah" style={{ fontSize }}>
+        <div className="surah" style={{ fontSize, ...(fullSurah ? { border: "2px double rgb(49, 143, 60)" } : {}) }}>
           {fullSurah ? (
             fullSurah.map((ayah) => (
               <div className="surah-container" key={ayah.number}>
@@ -102,9 +102,9 @@ export default function Surah() {
               </div>
             ))
           ) : (
-            <p style={{ margin: '0 auto' }}>
-              Please wait while we're fetching...
-            </p>
+            <span className='loadSurah'>
+             <span className='innerLoader'></span>
+            </span>
           )}
         </div>
       </div>

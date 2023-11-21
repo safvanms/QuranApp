@@ -4,6 +4,7 @@ import './home.css'
 import { Link } from 'react-router-dom'
 import Header from '../Other/Header'
 import Footer from '../Other/Footer'
+import Loading from '../Loading/Loading'
 
 const CACHE_KEY = 'quranData'
 const CACHE_TIMESTAMP_KEY = 'quranTimestamp'
@@ -13,10 +14,12 @@ export default function Home() {
   const [surahName, setSurahName] = useState([])
   const [englishName, setEnglishName] = useState([])
   const [type, setType] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true)
         // Check if data is present in local storage
         const storedQuranData = localStorage.getItem(CACHE_KEY)
         const storedTimestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY)
@@ -43,7 +46,6 @@ export default function Home() {
             return
           }
         }
-
         // Fetch data from the API
         const response = await axios.get(
           'https://api.alquran.cloud/v1/quran/quran-uthmani',
@@ -56,7 +58,9 @@ export default function Home() {
         localStorage.setItem(CACHE_TIMESTAMP_KEY, currentTimestamp.toString())
 
         updateState(surahs)
+
       } catch (error) {
+        setLoading(true)
         console.error('Error fetching Quran data:', error)
       }
     }
@@ -71,51 +75,56 @@ export default function Home() {
       setSurahName(surahNames)
       setEnglishName(englishNames)
       setType(types)
+      setLoading(false)
     }
 
     fetchData()
   }, [])
 
+
   return (
     <>
-      <Header />
-      <div className="home-container">
-        <div className="home-sec">
-          {surahNumber.length > 0 ? (
-            surahNumber?.map((number, index) => (
-              <Link
-                style={{ color: 'black', textDecoration: 'none' }}
-                to={`/${number}`}
-                key={index}
-              >
-                <div className="surah-list">
-                  <div className="surahNumberEngName">
-                    <div>{number}</div>
-                    <div
-                      style={{
-                        fontSize: '12px',
-                        color: 'grey',
-                        marginLeft: '10px',
-                      }}
-                    >
-                      {englishName[index]}
+      {loading ? (
+        <Loading />
+      ) : (
+        <div>
+          <Header />
+          <div className="home-container">
+            <div className="home-sec">
+              {surahNumber.length > 0 &&
+                surahNumber?.map((number, index) => (
+                  <Link
+                    style={{ color: 'black', textDecoration: 'none' }}
+                    to={`/${number}`}
+                    key={index}
+                  >
+                    <div className="surah-list">
+                      <div className="surahNumberEngName">
+                        <div>{number}</div>
+                        <div
+                          style={{
+                            fontSize: '12px',
+                            color: 'grey',
+                            marginLeft: '10px',
+                          }}
+                        >
+                          {englishName[index]}
+                        </div>
+                      </div>
+                      <div className="type">
+                        {type[index] === 'Meccan' ? '🕋' : '🕌'}
+                      </div>
+                      <span className="surah-name">
+                        <span>{surahName[index]}</span>
+                      </span>
                     </div>
-                  </div>
-                  <div className="type">
-                    {type[index] === 'Meccan' ? '🕋' : '🕌'}
-                  </div>
-                  <span className="surah-name">
-                    <span>{surahName[index]}</span>
-                  </span>
-                </div>
-              </Link>
-            ))
-          ) : (
-            <p>Loading ...</p>
-          )}
+                  </Link>
+                ))}
+            </div>
+          </div>
+          <Footer />
         </div>
-      </div>
-      <Footer />
+      )}
     </>
   )
 }
