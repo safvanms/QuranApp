@@ -49,6 +49,16 @@ export default function Surah() {
     setDarkMode(!darkMode)
   }
 
+  function convertToArabicNumerals(englishNumerals) {
+    const arabicNumerals = englishNumerals.toString().split('').map((digit) => {
+      const englishDigit = parseInt(digit, 10);
+      const arabicDigit = String.fromCharCode(1632 + englishDigit);
+      return arabicDigit;
+    });
+    return arabicNumerals.join('');
+  }
+
+
   return (
     <>
       <div className="options">
@@ -87,17 +97,18 @@ export default function Surah() {
         style={{ backgroundColor: darkMode ? 'black' : 'white' }}
       >
         <div className="surah" style={{ fontSize, ...(fullSurah ? { border: "2px double rgb(49, 143, 60)" } : {}) }}>
+
           {fullSurah ? (
             fullSurah.map((ayah) => (
-              <div className="surah-container" key={ayah.number}>
-                <div className="ayahAndNumber">
+              <div className='surah-container' key={ayah.number}>
+                <div>
                   <span
                     className="ayahs"
                     style={{ color: darkMode ? 'grey' : '' }}
                   >
                     {ayah.text}
                   </span>
-                  <span className="ayah-number">{ayah.numberInSurah}</span>
+                  <span className="ayah-number">{convertToArabicNumerals(ayah.numberInSurah)}</span>
                 </div>
               </div>
             ))

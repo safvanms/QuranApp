@@ -18,47 +18,50 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        setLoading(true)
-        // Check if data is present in local storage
-        const storedQuranData = localStorage.getItem(CACHE_KEY)
-        const storedTimestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY)
+      setLoading(true)
+      // Check if data is present in local storage
+      const storedQuranData = localStorage.getItem(CACHE_KEY)
+      const storedTimestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY)
 
-        if (storedQuranData && storedTimestamp) {
-          const currentTimestamp = new Date().getTime()
-          const storedTimestampNumber = parseInt(storedTimestamp, 10)
-          const sevenDaysInMilliseconds = 7 * 24 * 60 * 60 * 1000
+      if (storedQuranData && storedTimestamp) {
+        const currentTimestamp = new Date().getTime()
+        const storedTimestampNumber = parseInt(storedTimestamp, 10)
+        const sevenDaysInMilliseconds = 7 * 24 * 60 * 60 * 1000
 
-          // Check if data is less than 7 days old
-          if (
-            currentTimestamp - storedTimestampNumber <
-            sevenDaysInMilliseconds
-          ) {
-            const cachedData = JSON.parse(storedQuranData)
-            updateState(cachedData)
+        // Check if data is less than 7 days old
+        if (
+          currentTimestamp - storedTimestampNumber <
+          sevenDaysInMilliseconds
+        ) {
+          // store quran into states from the localStorage
+          const cachedData = JSON.parse(storedQuranData)
+          updateState(cachedData)
 
-            // Schedule removal after 7 days
-            setTimeout(() => {
-              localStorage.removeItem(CACHE_KEY)
-              localStorage.removeItem(CACHE_TIMESTAMP_KEY)
-            }, sevenDaysInMilliseconds)
+          // Schedule removal after 7 days
+          setTimeout(() => {
+            localStorage.removeItem(CACHE_KEY)
+            localStorage.removeItem(CACHE_TIMESTAMP_KEY)
+          }, sevenDaysInMilliseconds)
 
-            return
-          }
+          return
         }
-        // Fetch data from the API
+      }
+
+      // Fetch data from the API
+      try {
         const response = await axios.get(
           'https://api.alquran.cloud/v1/quran/quran-uthmani',
         )
         const surahs = response.data.data.surahs
+        console.log(response.data.data.surahs[0].ayahs[0].juz)
 
         // Store data in local storage
         const currentTimestamp = new Date().getTime()
         localStorage.setItem(CACHE_KEY, JSON.stringify(surahs))
         localStorage.setItem(CACHE_TIMESTAMP_KEY, currentTimestamp.toString())
 
+        // pass the surahs into the function for storing it into the states
         updateState(surahs)
-
       } catch (error) {
         setLoading(true)
         console.error('Error fetching Quran data:', error)
@@ -80,7 +83,6 @@ export default function Home() {
 
     fetchData()
   }, [])
-
 
   return (
     <>
