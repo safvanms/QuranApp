@@ -3,12 +3,24 @@
   justify-content: space-between;
   align-items: center;
   height: 40px;
-  gap: 20px;
-  padding-inline: 15%;
+  margin-top: 10px;
+  padding-inline: 10px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.surah-details p , .surah-details h4{
+font-size: 14px;
+width: 30%;
+font-weight: 600;
+}
+
+.surah-details h4{
+  text-align: right;
 }
 
 .surah-details h3 {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 900;
 }
 
 .surah-page {
@@ -17,7 +29,6 @@
   align-items: center;
   min-height: 80vh;
 }
-
 
 .surah {
   max-width: 550px;
@@ -47,39 +58,25 @@
   color: rgb(101, 101, 97);
 }
 
-
-.loadSurah {
-  display: inline-block;
-  overflow: hidden;
-  position: relative;
+.surah_loader{
   width: 100%;
 }
-
-.innerLoader{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80%;
-  height: 2px;
-  background-color: #0073b1 !important;
-  animation: moveRight 1s linear infinite; 
-}
-
-@keyframes moveRight {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
 
 
 @media (min-width: 801px) {
   .options {
     display: none;
   }
+
+  .surah-details {
+    justify-content: center;
+    gap: 100px;
+  }
+
+  .surah-details h3 {
+    font-size: 24px;
+  }
+
 }
 
 @media (max-width: 800px) {
@@ -92,7 +89,6 @@
 
   .surah-details {
     padding-inline: 15px;
-
   }
 
 

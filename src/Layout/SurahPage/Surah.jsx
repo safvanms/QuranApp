@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './surah.css'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import Loader from '../../components/Loader/Loader'
 
 export default function Surah() {
   const [fullSurah, setFullSurah] = useState(null)
@@ -13,16 +14,16 @@ export default function Surah() {
 
   useEffect(() => {
     const getSurah = async () => {
-      try {
-        // Check if data is present in local storage
-        const storedQuranData = localStorage.getItem('quranData')
-        if (storedQuranData) {
-          const surahs = JSON.parse(storedQuranData)
-          const surah = surahs[number - 1].ayahs
-          setSurahDetails(surahs[number - 1])
-          setFullSurah(surah)
-        } else {
-          // Fetch data from the API if not in local storage
+      // Check if data is present in local storage
+      const storedQuranData = localStorage.getItem('quranData')
+      if (storedQuranData) {
+        const surahs = JSON.parse(storedQuranData)
+        const surah = surahs[number - 1].ayahs
+        setSurahDetails(surahs[number - 1])
+        setFullSurah(surah)
+      } else {
+        // Fetch data from the API if not in local storage
+        try {
           const response = await axios.get(
             'https://api.alquran.cloud/v1/quran/quran-uthmani',
           )
@@ -33,9 +34,9 @@ export default function Surah() {
 
           // Store data in local storage
           localStorage.setItem('quranData', JSON.stringify(surahs))
+        } catch (error) {
+          console.log(error)
         }
-      } catch (error) {
-        console.log(error)
       }
     }
     getSurah()
@@ -50,14 +51,18 @@ export default function Surah() {
   }
 
   function convertToArabicNumerals(englishNumerals) {
-    const arabicNumerals = englishNumerals.toString().split('').map((digit) => {
-      const englishDigit = parseInt(digit, 10);
-      const arabicDigit = String.fromCharCode(1632 + englishDigit);
-      return arabicDigit;
-    });
-    return arabicNumerals.join('');
+    const arabicNumerals = englishNumerals
+      .toString()
+      .split('')
+      .map((digit) => {
+        const englishDigit = parseInt(digit, 10)
+        const arabicDigit = String.fromCharCode(1632 + englishDigit)
+        return arabicDigit
+      })
+    return arabicNumerals.join('')
   }
 
+  console.log(!fullSurah);
 
   return (
     <>
@@ -86,9 +91,9 @@ export default function Surah() {
             backgroundColor: darkMode ? 'black' : '',
           }}
         >
-          <p>{surahDetails.revelationType}</p>
-          <h4>{surahDetails.ayahs.length} Aayahs</h4>
+          <p>{surahDetails.revelationType==="Meccan" ? "مكية" : "مدنية"}</p>
           <h3>{surahDetails.name}</h3>
+          <h4>{surahDetails.ayahs.length} آيات</h4>
         </div>
       )}
 
@@ -96,11 +101,16 @@ export default function Surah() {
         className="surah-page"
         style={{ backgroundColor: darkMode ? 'black' : 'white' }}
       >
-        <div className="surah" style={{ fontSize, ...(fullSurah ? { border: "2px double rgb(49, 143, 60)" } : {}) }}>
-
+        <div
+          className="surah"
+          style={{
+            fontSize,
+            ...(fullSurah ? { border: '2px double rgb(49, 143, 60)' } : {}),
+          }}
+        >
           {fullSurah ? (
-            fullSurah.map((ayah) => (
-              <div className='surah-container' key={ayah.number}>
+            fullSurah?.map((ayah) => (
+              <div className="surah-container" key={ayah.number}>
                 <div>
                   <span
                     className="ayahs"
@@ -108,14 +118,14 @@ export default function Surah() {
                   >
                     {ayah.text}
                   </span>
-                  <span className="ayah-number">{convertToArabicNumerals(ayah.numberInSurah)}</span>
+                  <span className="ayah-number">
+                    {convertToArabicNumerals(ayah.numberInSurah)}
+                  </span>
                 </div>
               </div>
             ))
           ) : (
-            <span className='loadSurah'>
-             <span className='innerLoader'></span>
-            </span>
+            <div className='surah_loader'> <Loader bg={'green'} /> </div>
           )}
         </div>
       </div>
