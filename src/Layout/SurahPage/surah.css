@@ -62,9 +62,20 @@ font-weight: 600;
   width: 100%;
 }
 
-.end{
-  padding: 0 0 10px 0;
+.next{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding:0 10px 10px 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.next p{
   text-align: center;
+  font-size: 16px;
+  color: black;
+  padding-bottom: 2px;
 }
 
 @media (min-width: 801px) {

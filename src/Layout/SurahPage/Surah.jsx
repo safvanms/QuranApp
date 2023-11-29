@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './surah.css'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import Loader from '../../components/Loader/Loader'
 
@@ -9,8 +9,11 @@ export default function Surah() {
   const [surahDetails, setSurahDetails] = useState('')
   const [fontSize, setFontSize] = useState('18px')
   const [darkMode, setDarkMode] = useState(false)
+  const [nextSurah, setNextSurah] = useState([])
 
   const { number } = useParams()
+  const navigate = useNavigate()
+
 
   useEffect(() => {
     const getSurah = async () => {
@@ -20,6 +23,7 @@ export default function Surah() {
         const surahs = JSON.parse(storedQuranData)
         const surah = surahs[number - 1].ayahs
         setSurahDetails(surahs[number - 1])
+        setNextSurah(surahs[number])
         setFullSurah(surah)
       } else {
         // Fetch data from the API if not in local storage
@@ -30,6 +34,7 @@ export default function Surah() {
           const surahs = response.data.data.surahs
           const surah = surahs[number - 1].ayahs
           setSurahDetails(surahs[number - 1])
+          setNextSurah(surahs[number])
           setFullSurah(surah)
 
           // Store data in local storage
@@ -38,6 +43,7 @@ export default function Surah() {
           console.log(error)
         }
       }
+      window.scrollTo(0, 0)
     }
     getSurah()
   }, [number])
@@ -62,13 +68,20 @@ export default function Surah() {
     return arabicNumerals.join('')
   }
 
-  console.log(!fullSurah)
+  const getNextSurah = () => {
+    navigate(`/${parseInt(number, 10) + 1}`)
+  }
+
+  const getFullSurah = () => {
+   navigate('/')
+  }
 
   return (
     <>
       <div className="options">
         <div className="settings">
           <select value={fontSize} onChange={handleFontChange}>
+            <option value="19px">Font size</option>
             <option value="18px">Extra small</option>
             <option value="20px">Small</option>
             <option value="22px">Medium</option>
@@ -93,7 +106,10 @@ export default function Surah() {
         >
           <p>{surahDetails.revelationType === 'Meccan' ? 'مكية' : 'مدنية'}</p>
           <h3>{surahDetails.name}</h3>
-          <h4>{surahDetails.ayahs.length} آيات</h4>
+          <h4>
+            {surahDetails.ayahs.length}
+            <span> آيات</span>{' '}
+          </h4>
         </div>
       )}
 
@@ -132,7 +148,10 @@ export default function Surah() {
           )}
         </div>
       </div>
-      <p className='end'>صدق الله العلي العظيم</p>
+      <div className="next" style={{ backgroundColor: darkMode && 'black' }}>
+        <p onClick={getNextSurah}>{nextSurah && nextSurah.name} </p>
+        <p onClick={getFullSurah}>All Surah 📚</p>
+      </div>
     </>
   )
 }
