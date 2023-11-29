@@ -62,7 +62,7 @@ export default function Surah() {
     return arabicNumerals.join('')
   }
 
-  console.log(!fullSurah);
+  console.log(!fullSurah)
 
   return (
     <>
@@ -91,7 +91,7 @@ export default function Surah() {
             backgroundColor: darkMode ? 'black' : '',
           }}
         >
-          <p>{surahDetails.revelationType==="Meccan" ? "مكية" : "مدنية"}</p>
+          <p>{surahDetails.revelationType === 'Meccan' ? 'مكية' : 'مدنية'}</p>
           <h3>{surahDetails.name}</h3>
           <h4>{surahDetails.ayahs.length} آيات</h4>
         </div>
@@ -125,10 +125,14 @@ export default function Surah() {
               </div>
             ))
           ) : (
-            <div className='surah_loader'> <Loader bg={'green'} /> </div>
+            <div className="surah_loader">
+              {' '}
+              <Loader bg={'green'} />{' '}
+            </div>
           )}
         </div>
       </div>
+      <p className='end'>صدق الله العلي العظيم</p>
     </>
   )
 }
