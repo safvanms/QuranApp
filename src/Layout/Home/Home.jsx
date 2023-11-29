@@ -23,29 +23,29 @@ export default function Home() {
       const storedQuranData = localStorage.getItem(CACHE_KEY)
       const storedTimestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY)
 
-      // if (storedQuranData && storedTimestamp) {
-      //   const currentTimestamp = new Date().getTime()
-      //   const storedTimestampNumber = parseInt(storedTimestamp, 10)
-      //   const sevenDaysInMilliseconds = 7 * 24 * 60 * 60 * 1000
+      if (storedQuranData && storedTimestamp) {
+        const currentTimestamp = new Date().getTime()
+        const storedTimestampNumber = parseInt(storedTimestamp, 10)
+        const sevenDaysInMilliseconds = 7 * 24 * 60 * 60 * 1000
 
-      //   // Check if data is less than 7 days old
-      //   if (
-      //     currentTimestamp - storedTimestampNumber <
-      //     sevenDaysInMilliseconds
-      //   ) {
-      //     // store quran into states from the localStorage
-      //     const cachedData = JSON.parse(storedQuranData)
-      //     updateState(cachedData)
+        // Check if data is less than 7 days old
+        if (
+          currentTimestamp - storedTimestampNumber <
+          sevenDaysInMilliseconds
+        ) {
+          // store quran into states from the localStorage
+          const cachedData = JSON.parse(storedQuranData)
+          updateState(cachedData)
 
-      //     // Schedule removal after 7 days
-      //     setTimeout(() => {
-      //       localStorage.removeItem(CACHE_KEY)
-      //       localStorage.removeItem(CACHE_TIMESTAMP_KEY)
-      //     }, sevenDaysInMilliseconds)
+          // Schedule removal after 7 days
+          setTimeout(() => {
+            localStorage.removeItem(CACHE_KEY)
+            localStorage.removeItem(CACHE_TIMESTAMP_KEY)
+          }, sevenDaysInMilliseconds)
 
-      //     return
-      //   }
-      // }
+          return
+        }
+      }
 
       // Fetch data from the API
       try {
