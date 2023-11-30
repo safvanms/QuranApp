@@ -84,6 +84,11 @@ font-weight: 600;
 }
 
 @media (min-width: 801px) {
+
+  .surah {
+    font-size: 24px !important;
+  }
+
   .options {
     display: none;
   }
