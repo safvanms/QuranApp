@@ -83,6 +83,29 @@ font-weight: 600;
   padding-bottom: 2px;
 }
 
+.next>p>span{
+  font-size: 30px;
+  color: green;
+  margin-left: 5px;
+  display: inline-block; 
+  animation: moving 1s linear infinite; 
+}
+
+@keyframes moving {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  50% {
+    transform: translateX(0%); 
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
 @media (min-width: 801px) {
 
   .surah {
