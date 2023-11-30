@@ -64,11 +64,16 @@ font-weight: 600;
 
 .next{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  padding:0 10px 10px 10px;
+  padding:0 10px 20px 10px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+
+.darkModeText {
+  color: white !important;
 }
 
 .next p{
@@ -98,7 +103,6 @@ font-weight: 600;
   .surah {
     width: 100%;
     padding: 15px;
-    /* gap: 18px; */
     margin-inline: 5px;
   }
 

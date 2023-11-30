@@ -7,13 +7,12 @@ import Loader from '../../components/Loader/Loader'
 export default function Surah() {
   const [fullSurah, setFullSurah] = useState(null)
   const [surahDetails, setSurahDetails] = useState('')
-  const [fontSize, setFontSize] = useState('18px')
+  const [fontSize, setFontSize] = useState('19px')
   const [darkMode, setDarkMode] = useState(false)
   const [nextSurah, setNextSurah] = useState([])
 
   const { number } = useParams()
   const navigate = useNavigate()
-
 
   useEffect(() => {
     const getSurah = async () => {
@@ -73,8 +72,9 @@ export default function Surah() {
   }
 
   const getFullSurah = () => {
-   navigate('/')
+    navigate('/')
   }
+
 
   return (
     <>
@@ -143,14 +143,24 @@ export default function Surah() {
           ) : (
             <div className="surah_loader">
               {' '}
-              <Loader bg={'green'} />{' '}
+              <Loader bg={'green'} /> 
             </div>
           )}
         </div>
       </div>
-      <div className="next" style={{ backgroundColor: darkMode && 'black' }}>
-        <p onClick={getNextSurah}>{nextSurah && nextSurah.name} </p>
-        <p onClick={getFullSurah}>All Surah 📚</p>
+      <div
+        className="next"
+        style={{
+          backgroundColor: darkMode && 'black',
+        }}
+      >
+        <p className={darkMode && 'darkModeText'} onClick={getNextSurah}>
+         {nextSurah && nextSurah.name} <span>&#171;&#171;</span>
+        </p>
+        <p className={darkMode && 'darkModeText'} onClick={getFullSurah}>
+          {' '}
+          القرآن 📚
+        </p>
       </div>
     </>
   )
