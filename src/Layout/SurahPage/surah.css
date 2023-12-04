@@ -40,7 +40,7 @@ font-weight: 600;
   padding: 15px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-align: right;
-  border-radius: 20px;
+  border-radius: 2px;
   word-spacing: 1px;
 }
 
@@ -73,17 +73,16 @@ font-weight: 600;
 
 
 .darkModeText {
-  color: white !important;
+  color: white ;
 }
 
 .next p{
   text-align: center;
   font-size: 16px;
-  color: black;
   padding-bottom: 2px;
 }
 
-.next>p>span{
+/* .next>p>span{
   font-size: 30px;
   color: green;
   margin-left: 5px;
@@ -103,7 +102,7 @@ font-weight: 600;
   100% {
     transform: translateX(-50%);
   }
-}
+} */
 
 
 @media (min-width: 801px) {

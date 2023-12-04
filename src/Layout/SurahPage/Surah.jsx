@@ -107,8 +107,8 @@ export default function Surah() {
           <p>{surahDetails.revelationType === 'Meccan' ? 'مكية' : 'مدنية'}</p>
           <h3>{surahDetails.name}</h3>
           <h4>
-            {surahDetails.ayahs.length}
-            <span> آيات</span>{' '}
+            <span> آياتها</span>{' '}
+            {convertToArabicNumerals (surahDetails.ayahs.length)}
           </h4>
         </div>
       )}
@@ -121,7 +121,7 @@ export default function Surah() {
           className="surah"
           style={{
             fontSize,
-            ...(fullSurah ? { border: '2px double rgb(49, 143, 60)' } : {}),
+            ...(fullSurah ? { border: '3px double rgb(49, 143, 60)' } : {}),
           }}
         >
           {fullSurah ? (
@@ -155,11 +155,11 @@ export default function Surah() {
         }}
       >
         <p className={darkMode && 'darkModeText'} onClick={getNextSurah}>
-         {nextSurah && nextSurah.name} <span>&#171;&#171;</span>
+         {nextSurah && nextSurah.name} 
         </p>
         <p className={darkMode && 'darkModeText'} onClick={getFullSurah}>
           {' '}
-          القرآن 📚
+          القرآن 
         </p>
       </div>
     </>
