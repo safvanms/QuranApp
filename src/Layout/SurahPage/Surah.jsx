@@ -75,6 +75,8 @@ export default function Surah() {
     navigate('/')
   }
 
+  console.log(fullSurah);
+
   return (
     <>
       <div className="options">
@@ -124,7 +126,7 @@ export default function Surah() {
           }}
         >
           <div className="surah-container">
-            {fullSurah ? (
+            {fullSurah  ? (
               fullSurah?.map((ayah) => (
                 <>
                   <span
@@ -142,7 +144,7 @@ export default function Surah() {
             ) : (
               <div className="surah_loader">
                 {' '}
-                <Loader />
+                <Loader bg={'green'} />
               </div>
             )}
           </div>

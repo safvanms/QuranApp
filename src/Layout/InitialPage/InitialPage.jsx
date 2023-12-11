@@ -9,7 +9,7 @@ export default function InitialPage() {
       <img src={BG} alt="quran" />
       <div className="app__name">
         <h1>القرآن الكريم برسم العثماني</h1>
-        <Loader/>
+        <Loader bg={'white'} />
       </div>
     </div>
   )
