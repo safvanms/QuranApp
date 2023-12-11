@@ -75,7 +75,6 @@ export default function Surah() {
     navigate('/')
   }
 
-
   return (
     <>
       <div className="options">
@@ -108,7 +107,7 @@ export default function Surah() {
           <h3>{surahDetails.name}</h3>
           <h4>
             <span> آياتها</span>{' '}
-            {convertToArabicNumerals (surahDetails.ayahs.length)}
+            {convertToArabicNumerals(surahDetails.ayahs.length)}
           </h4>
         </div>
       )}
@@ -124,12 +123,13 @@ export default function Surah() {
             ...(fullSurah ? { border: '3px double rgb(49, 143, 60)' } : {}),
           }}
         >
-          {fullSurah ? (
-            fullSurah?.map((ayah) => (
-              <div className="surah-container" key={ayah.number}>
-                <div>
+          <div className="surah-container">
+            {fullSurah ? (
+              fullSurah?.map((ayah) => (
+                <>
                   <span
                     className="ayahs"
+                    key={ayah.number}
                     style={{ color: darkMode ? 'grey' : '' }}
                   >
                     {ayah.text}
@@ -137,15 +137,15 @@ export default function Surah() {
                   <span className="ayah-number">
                     {convertToArabicNumerals(ayah.numberInSurah)}
                   </span>
-                </div>
+                </>
+              ))
+            ) : (
+              <div className="surah_loader">
+                {' '}
+                <Loader />
               </div>
-            ))
-          ) : (
-            <div className="surah_loader">
-              {' '}
-              <Loader bg={'green'} /> 
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
       <div
@@ -155,11 +155,11 @@ export default function Surah() {
         }}
       >
         <p className={darkMode && 'darkModeText'} onClick={getNextSurah}>
-         {nextSurah && nextSurah.name} 
+          {nextSurah && nextSurah.name}
         </p>
         <p className={darkMode && 'darkModeText'} onClick={getFullSurah}>
           {' '}
-          القرآن 
+          القرآن
         </p>
       </div>
     </>

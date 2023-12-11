@@ -13,6 +13,7 @@
      width: 100%;
      height: 1px;
      animation: moveRight 1s linear infinite;
+     background-color: grey;
 }
 
 @keyframes moveRight {

@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 40px;
+  height: 50px;
   padding-top: 10px;
   padding-inline: 10px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -21,6 +21,7 @@ font-weight: 600;
 .surah-details h3 {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: 900;
+  font-size: 20px;
 }
 
 .surah-page {
@@ -30,32 +31,36 @@ font-weight: 600;
   min-height: 80vh;
 }
 
+.surah-container{
+  display: block;
+}
+
 .surah {
   max-width: 550px;
   font-weight: bold;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; 
   flex-direction: row-reverse;
   margin: 10px 30px 30px 30px;
-  padding: 15px;
+  padding:10px 5px !important;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-align: right;
-  border-radius: 2px;
-  word-spacing: 1px;
+  text-wrap: wrap;
+  word-spacing: 2px;
+}
+
+.ayahs{
+  letter-spacing: 1px;
+  margin:0px 1px;
 }
 
 .ayah-number {
   background-color: rgb(197, 195, 195);
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 50%;
   padding-inline: 3px;
   border: 1px solid #bbbb;
-  margin: 5px;
   color: rgb(18, 18, 18);
-}
-
-.surah-container:nth-child(odd) {
-  color: rgb(101, 101, 97);
 }
 
 .surah_loader{
@@ -71,7 +76,6 @@ font-weight: 600;
   align-items: center;
 }
 
-
 .darkModeText {
   color: white ;
 }
@@ -80,30 +84,12 @@ font-weight: 600;
   text-align: center;
   font-size: 16px;
   padding-bottom: 2px;
+  font-weight: 600;
 }
 
-/* .next>p>span{
-  font-size: 30px;
-  color: green;
-  margin-left: 5px;
-  display: inline-block; 
-  animation: moving 1s linear infinite; 
+.next p:hover{
+ color: blue;
 }
-
-@keyframes moving {
-  0% {
-    transform: translateX(-50%);
-  }
-
-  50% {
-    transform: translateX(0%); 
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
-} */
-
 
 @media (min-width: 801px) {
 
@@ -137,7 +123,6 @@ font-weight: 600;
     padding-inline: 15px;
   }
 
-
   .options {
     display: block;
     display: flex;
@@ -146,7 +131,6 @@ font-weight: 600;
     background-color: rgb(3, 3, 3);
     padding: 12px 15px 12px 15px;
   }
-
 
   .settings select {
     width: 100px;
