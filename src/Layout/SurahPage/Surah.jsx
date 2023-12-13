@@ -3,6 +3,7 @@ import './surah.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import Loader from '../../components/Loader/Loader'
+import CONTAINER from '../../Assets/surah_bg.jpg'
 
 export default function Surah() {
   const [fullSurah, setFullSurah] = useState(null)
@@ -75,7 +76,7 @@ export default function Surah() {
     navigate('/')
   }
 
-  console.log(fullSurah);
+  console.log(fullSurah)
 
   return (
     <>
@@ -98,6 +99,8 @@ export default function Surah() {
       </div>
 
       {surahDetails && (
+        <div className='surah_details_container'>
+          <img src={CONTAINER} className='surah_bg' alt="surah_name" />
         <div
           className="surah-details"
           style={{
@@ -111,6 +114,7 @@ export default function Surah() {
             <span> آياتها</span>{' '}
             {convertToArabicNumerals(surahDetails.ayahs.length)}
           </h4>
+        </div>
         </div>
       )}
 
@@ -126,13 +130,13 @@ export default function Surah() {
           }}
         >
           <div className="surah-container">
-            {fullSurah  ? (
+            {fullSurah ? (
               fullSurah?.map((ayah) => (
                 <>
                   <span
                     className="ayahs"
                     key={ayah.number}
-                    style={{ color: darkMode ? 'grey' : '' }}
+                    style={{ color: darkMode ? 'gray' : '' }}
                   >
                     {ayah.text}
                   </span>

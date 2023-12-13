@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink&display=swap');
+
 .surah-details {
   display: flex;
   justify-content: space-between;
@@ -5,23 +7,31 @@
   height: 50px;
   padding-top: 10px;
   padding-inline: 10px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Reem Kufi Ink', sans-serif;
+  text-shadow: 1px 1px 1.5px rgba(0, 0, 0, 0.1);
 }
 
-.surah-details p , .surah-details h4{
-font-size: 14px;
-width: 30%;
-font-weight: 600;
+.surah_bg {
+  display: none;
 }
 
-.surah-details h4{
+.surah-details p,
+.surah-details h4 {
+  font-size: 14px;
+  width: 30%;
+  font-weight: 600;
+}
+
+.surah-details h4 {
   text-align: right;
 }
 
 .surah-details h3 {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-weight: 900;
-  font-size: 20px;
+  font-family: 'Reem Kufi Ink', sans-serif;
+  font-weight: bolder;
+  font-size: 23px;
+  width: 70%;
+  text-align: center;
 }
 
 .surah-page {
@@ -31,7 +41,7 @@ font-weight: 600;
   min-height: 80vh;
 }
 
-.surah-container{
+.surah-container {
   display: block;
 }
 
@@ -39,18 +49,18 @@ font-weight: 600;
   max-width: 550px;
   font-weight: bold;
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   flex-direction: row-reverse;
   margin: 10px 30px 30px 30px;
-  padding:10px 5px !important;
+  padding: 10px 6px !important;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-align: right;
   text-wrap: wrap;
   word-spacing: 2px;
 }
 
-.ayahs{
-  margin:0px 1px;
+.ayahs {
+  margin: 0px 1px;
 }
 
 .ayah-number {
@@ -62,13 +72,13 @@ font-weight: 600;
   color: rgb(18, 18, 18);
 }
 
-.surah_loader{
-  width:400px;
+.surah_loader {
+  width: 400px;
 }
 
-.next{
+.next {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  padding:0 10px 20px 10px;
+  padding: 0 10px 20px 10px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -76,38 +86,48 @@ font-weight: 600;
 }
 
 .darkModeText {
-  color: white ;
+  color: white;
 }
 
-.next p{
+.next p {
   text-align: center;
   font-size: 16px;
   padding-bottom: 2px;
   font-weight: 600;
 }
 
-.next p:hover{
- color: blue;
+.next p:hover {
+  color: blue;
 }
 
 @media (min-width: 801px) {
 
+  .surah-details {
+    width: 550px;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 10px auto;
+  }
+
+  .surah-details p,
+  .surah-details h4 {
+    font-size: 30px;
+  }
+
+  .surah-details h3 {
+    font-size: 40px;
+
+  }
+
   .surah {
     font-size: 24px !important;
+
   }
 
   .options {
     display: none;
   }
 
-  .surah-details {
-    justify-content: center;
-    gap: 100px;
-  }
-
-  .surah-details h3 {
-    font-size: 24px;
-  }
 
 }
 
