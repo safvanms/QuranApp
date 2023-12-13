@@ -99,22 +99,22 @@ export default function Surah() {
       </div>
 
       {surahDetails && (
-        <div className='surah_details_container'>
-          <img src={CONTAINER} className='surah_bg' alt="surah_name" />
-        <div
-          className="surah-details"
-          style={{
-            color: darkMode ? 'grey' : '',
-            backgroundColor: darkMode ? 'black' : '',
-          }}
-        >
-          <p>{surahDetails.revelationType === 'Meccan' ? 'مكية' : 'مدنية'}</p>
-          <h3>{surahDetails.name}</h3>
-          <h4>
-            <span> آياتها</span>{' '}
-            {convertToArabicNumerals(surahDetails.ayahs.length)}
-          </h4>
-        </div>
+        <div className="surah_details_container">
+          <img src={CONTAINER} className="surah_bg" alt="surah_name" />
+          <div
+            className="surah-details"
+            style={{
+              color: darkMode ? 'grey' : '',
+              backgroundColor: darkMode ? 'black' : '',
+            }}
+          >
+            <p>{surahDetails.revelationType === 'Meccan' ? 'مكية' : 'مدنية'}</p>
+            <h3>{surahDetails.name}</h3>
+            <h4>
+              <span> آياتها</span>{' '}
+              {convertToArabicNumerals(surahDetails.ayahs.length)}
+            </h4>
+          </div>
         </div>
       )}
 
@@ -154,20 +154,22 @@ export default function Surah() {
           </div>
         </div>
       </div>
-      <div
-        className="next"
-        style={{
-          backgroundColor: darkMode && 'black',
-        }}
-      >
-        <p className={darkMode && 'darkModeText'} onClick={getNextSurah}>
-          {nextSurah && nextSurah.name}
-        </p>
-        <p className={darkMode && 'darkModeText'} onClick={getFullSurah}>
-          {' '}
-          القرآن
-        </p>
-      </div>
+      {fullSurah && (
+        <div
+          className="next"
+          style={{
+            backgroundColor: darkMode && 'black',
+          }}
+        >
+          <p className={darkMode && 'darkModeText'} onClick={getNextSurah}>
+            {nextSurah && nextSurah.name}
+          </p>
+          <p className={darkMode && 'darkModeText'} onClick={getFullSurah}>
+            {' '}
+            القرآن
+          </p>
+        </div>
+      )}
     </>
   )
 }
