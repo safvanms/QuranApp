@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Scheherazade+New&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic&display=swap'); */
 
 .surah-details {
   display: flex;
@@ -8,7 +11,7 @@
   padding-top: 10px;
   padding-inline: 10px;
   font-family: 'Reem Kufi Ink', sans-serif;
-  text-shadow: 1px 1px 1.5px rgba(0, 0, 0, 0.1);
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.628);
 }
 
 .surah_bg {
@@ -27,7 +30,6 @@
 }
 
 .surah-details h3 {
-  font-family: 'Reem Kufi Ink', sans-serif;
   font-weight: bolder;
   font-size: 23px;
   width: 70%;
@@ -46,34 +48,29 @@
 }
 
 .surah {
-  max-width: 550px;
-  font-weight: bold;
+  max-width: 1200px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row-reverse;
   margin: 10px 30px 30px 30px;
   padding: 10px 6px !important;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-align: right;
   text-wrap: wrap;
-  word-spacing: 2px;
-}
-
-.ayahs {
-  margin: 0px 1px;
+  font-family: 'Scheherazade New', serif;
 }
 
 .ayah-number {
   background-color: rgb(197, 195, 195);
-  font-size: 12px;
+  font-size: 9px;
   border-radius: 50%;
-  padding-inline: 3px;
+  padding: 0 2px;
+  margin:0 3px;
   border: 1px solid #bbbb;
   color: rgb(18, 18, 18);
 }
 
 .surah_loader {
-  width: 400px;
+  width: 90vw;
 }
 
 .next {
@@ -103,10 +100,12 @@
 @media (min-width: 801px) {
 
   .surah-details {
-    width: 550px;
+    max-width: 1200px;
     justify-content: space-between;
     gap: 10px;
+    padding-inline: 40px;
     margin: 10px auto;
+    background-color: #fff !important;
   }
 
   .surah-details p,
@@ -119,9 +118,17 @@
 
   }
 
+  .surah-page{
+    background-color: #fff !important;
+  }
+
   .surah {
     font-size: 24px !important;
+    font-family: 'Scheherazade New', serif !important;
+  }
 
+  .ayahs{
+    color: black !important;
   }
 
   .options {
@@ -159,5 +166,9 @@
     border-radius: 10px;
     border-color: rgb(223, 200, 21);
   }
+
+  /* .surah_loader{
+    width: 100%;
+  } */
 
 }
