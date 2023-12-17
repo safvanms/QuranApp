@@ -10,7 +10,7 @@ export default function SurahDetails({surahDetails,darkMode}) {
           className="surah-details"
           style={{
             color: darkMode ? 'grey' : '',
-            backgroundColor: darkMode ? 'rgb(25, 25, 25)' : '',
+            backgroundColor: darkMode ? 'black' : '',
           }}
         >
           <p>{surahDetails.revelationType === 'Meccan' ? 'مكية' : 'مدنية'}</p>

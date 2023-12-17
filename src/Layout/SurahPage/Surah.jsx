@@ -101,16 +101,16 @@ export default function Surah() {
 
       <div
         className="surah-page"
-        style={{ backgroundColor: darkMode ? 'rgb(25, 25, 25)' : 'white' }}
+        style={{ backgroundColor: darkMode ? 'black' : 'white' }}
       >
         <div
           className="surah"
           style={{
             fontSize,
-            ...(fullSurah ? { border: '3px double rgb(49, 143, 60)' } : {}),
+            ...(fullSurah ? { border: '4px double rgb(49, 143, 60)' } : {}),
           }}
         >
-          <div className="surah-container">
+          <div >
             <SurahPage fullSurah={fullSurah} darkMode={darkMode} />
           </div>
         </div>

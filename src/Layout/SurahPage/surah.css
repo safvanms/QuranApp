@@ -11,7 +11,7 @@
   padding-top: 10px;
   padding-inline: 10px;
   font-family: 'Reem Kufi Ink', sans-serif;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.628);
+  text-shadow: 1px 1px 1px rgb(187, 187, 187);
 }
 
 .surah_bg {
@@ -43,9 +43,13 @@
   min-height: 80vh;
 }
 
-.surah-container {
-  display: block;
-}
+/* .surah-container {
+   display: inline-flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center; 
+} */
 
 .surah {
   max-width: 1200px;
@@ -54,19 +58,28 @@
   flex-direction: row-reverse;
   margin: 10px 30px 30px 30px;
   padding: 10px 6px !important;
-  text-align: right;
+  text-align: justify;
+  line-height: 2;
   text-wrap: wrap;
-  font-family: 'Scheherazade New', serif;
+  font-family: 'Scheherazade New', serif !important;
 }
 
 .ayah-number {
-  background-color: rgb(197, 195, 195);
-  font-size: 9px;
+  min-width: 20px;
+  height: 20px;
+  font-size: 11px;
   border-radius: 50%;
-  padding: 0 2px;
-  margin:0 3px;
-  border: 1px solid #bbbb;
-  color: rgb(18, 18, 18);
+  padding: 0px 5px;
+  margin: 0 3px;
+  border: 1px solid gray;
+  text-align: center;
+  line-height: 15px;
+  box-sizing: border-box;
+  color: grey !important;
+}
+
+.ayah-number:last-child {
+  margin-left: 40%;
 }
 
 .surah_loader {
@@ -118,7 +131,7 @@
 
   }
 
-  .surah-page{
+  .surah-page {
     background-color: #fff !important;
   }
 
@@ -127,12 +140,16 @@
     font-family: 'Scheherazade New', serif !important;
   }
 
-  .ayahs{
+  .ayahs {
     color: black !important;
   }
 
   .options {
     display: none;
+  }
+
+  .ayah-number:last-child {
+    margin-left: 50%;
   }
 
 
