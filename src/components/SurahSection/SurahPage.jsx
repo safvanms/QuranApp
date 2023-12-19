@@ -12,7 +12,7 @@ export default function SurahPage({ fullSurah, darkMode }) {
             <span
               className="ayahs"
               key={ayah.number}
-              style={{ color: darkMode ? '#dddddd' : '' }}
+              style={{ color: darkMode ? '#CCCCCC' : '' }}
             >
               {ayah.text}
             </span>

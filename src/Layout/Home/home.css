@@ -14,6 +14,8 @@
   border-radius: 15px;
   background-color: #ffff;
   margin: 15px 0px 15px 0px;
+  /* background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0Bba8u1pJH-QFGll43RApbvFhAIkNEULbQA&usqp=CAU"); */
+
 }
 
 .surahNumberEngName {
@@ -31,7 +33,7 @@
 }
 
 .type {
-  font-size: 15px;
+  font-size: larger;
 }
 
 @media (max-width: 800px) {
@@ -42,11 +44,6 @@
 
   .surah-list span:nth-child(3) {
     font-size: 20px !important;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  }
-
-  .surah-list {
-    padding: 10px !important;
   }
 }
 
@@ -54,21 +51,25 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 5px 10px;
   border: 1px solid #8ec5875e;
   transition: background-color 0.3s;
   margin: 5px;
   border-radius: 10px;
+  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW4Gnz7QBHNsl6CmaKrXJ5BPg_ginmRi7MNA&usqp=CAU");
+  background-repeat: no-repeat;
 }
+
 
 .surahNumberEngName {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  font-family: Montserrat;
 }
 
 .surah-list:hover {
-  background-color: #ede9e9ea;
+  background-color: #f7f6f688;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -80,5 +81,5 @@
 
 .surah-list span:nth-child(3) {
   font-size: 21px !important;
-  font-weight: bold;
+  font-family: 'Scheherazade New', serif ;
 }

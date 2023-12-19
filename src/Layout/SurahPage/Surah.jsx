@@ -107,7 +107,7 @@ export default function Surah() {
           className="surah"
           style={{
             fontSize,
-            ...(fullSurah ? { border: '4px double rgb(49, 143, 60)' } : {}),
+            ...(fullSurah ? { border: '3px double rgb(49, 143, 60)' } : {}),
           }}
         >
           <div >
