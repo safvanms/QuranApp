@@ -23,7 +23,7 @@ export default function SurahPage({ fullSurah, darkMode }) {
         ))
       ) : (
         <div className="surah_loader">
-          <Loader bg={'green'} />
+          <Loader/>
         </div>
       )}
     </>

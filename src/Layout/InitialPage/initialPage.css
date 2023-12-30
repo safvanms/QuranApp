@@ -1,40 +1,69 @@
 .initial_page {
-     position: relative;
-     background-color: rgb(10, 10, 33);
-     display: flex;
-     justify-content: center;
-     align-items: center;
+  position: relative;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 100vh;
 }
 
-.initial_page img {
-     width: 100%;
-     height: 100vh;
-     object-fit: cover;
+.img_section {
+  height: 88vh;
+  width: 100%;
+  border-radius: 0 0 25px 25px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px,
+    rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
+    rgba(0, 0, 0, 0.07) 0px 16px 16px;
+  position: relative;
+}
+
+.img_section img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
 }
 
 .app__name {
-     position: absolute;
-     top: 50%;
-     left: 50%;
-     transform: translate(-50%, -50%);
-     width: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
 }
 
 .initial_page h1 {
-     text-align: center;
-     color: white;
-     font-size: 34px;
-     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+  color: white;
+  font-size: 34px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  padding-bottom: 10px;
 }
 
-
 @media (max-width: 800px) {
-     .initial_page img {
-          height: 100vh;
-     }
+  .img_section {
+    height: 88vh;
+    width: 100%;
+  }
 
-     .initial_page h1 {
-          font-size: 20px;
-          left: 20%;
-     }
+  .initial_page img {
+    height: 100%;
+  }
+
+  .initial_page h1 {
+    font-size: 20px;
+    left: 20%;
+  }
+}
+
+@media (min-width: 800px) {
+  .img_section {
+    height: 100vh;
+    border-radius: 0;
+  }
 }

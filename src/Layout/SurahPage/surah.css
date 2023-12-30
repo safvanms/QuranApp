@@ -43,14 +43,6 @@
   min-height: 80vh;
 }
 
-/* .surah-container {
-   display: inline-flex;
-  flex-direction: row-reverse;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center; 
-} */
-
 .surah {
   max-width: 1200px;
   display: flex;
@@ -83,7 +75,9 @@
 }
 
 .surah_loader {
-  width: 90vw;
+width: 100vw;
+display: flex;
+justify-content: center;
 }
 
 .next {

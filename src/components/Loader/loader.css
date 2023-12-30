@@ -1,26 +1,9 @@
-.main_loader {
-     display: inline-block;
-     overflow: hidden;
-     position: relative;
-     width: 100% ;
-     border-radius: 20px;
-}
-
-.inner_loader {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     width: 100% ;
-     height: 1px;
-     animation: moveRight 1s linear infinite;
-}
-
-@keyframes moveRight {
-     0% {
-          transform: translateX(-100%);
-     }
-
-     100% {
-          transform: translateX(100%);
-     }
-}
+.loader {
+     width:25px;
+     height:25px;
+     border-radius:50%;
+     background:conic-gradient(#0000 10%,#797979);
+     -webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 4px),#000 0);
+     animation:s3 1s infinite linear;
+   }
+   @keyframes s3 {to{transform: rotate(1turn)}}
