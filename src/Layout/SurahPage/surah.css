@@ -98,6 +98,11 @@
   color: blue;
 }
 
+.loader_ {
+  width: 50vw;
+  margin: 0 auto;
+}
+
 @media (min-width: 801px) {
   .surah-details {
     max-width: 1200px;
@@ -133,16 +138,11 @@
   .options {
     display: none;
   }
-
-  /* .ayah-number:last-child {
-    margin-left: 50%;
-  } */
 }
 
 @media (max-width: 800px) {
   .surah {
     width: 100%;
-    /* padding: 15px; */
     margin-inline: 5px;
   }
 
@@ -166,5 +166,9 @@
     color: #fff;
     border-radius: 10px;
     border-color: rgb(223, 200, 21);
+  }
+  .loader_ {
+    width: 88vw;
+    margin: 0 auto;
   }
 }

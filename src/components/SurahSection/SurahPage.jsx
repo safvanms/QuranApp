@@ -22,7 +22,10 @@ export default function SurahPage({ fullSurah, darkMode }) {
           </>
         ))
       ) : (
-        <Loader />
+        <div className="loader_">
+          <Loader />
+        </div>
+        
       )}
     </>
   );
