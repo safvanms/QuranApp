@@ -1,11 +1,15 @@
-import React from 'react'
-import '../../Layout/SurahPage/surah.css'
+import React from "react";
+import "../../Layout/SurahPage/surah.css";
 
-
-export default function PageSettings({handleFontChange , handleTheme , darkMode , fontSize}) {
+export default function PageSettings({
+  handleFontChange,
+  handleTheme,
+  darkMode,
+  fontSize,
+}) {
   return (
     <div>
-     <div className="options">
+      <div className="options">
         <div className="settings">
           <select value={fontSize} onChange={handleFontChange}>
             <option value="19px">Font size</option>
@@ -18,10 +22,10 @@ export default function PageSettings({handleFontChange , handleTheme , darkMode 
 
         <div className="darkmode">
           <h3 onClick={handleTheme}>
-            {darkMode ? <span>☀️</span> : <span>&#x1F319;</span>}{' '}
+            {darkMode ? <span>☀️</span> : <span>&#x1F319;</span>}{" "}
           </h3>
         </div>
       </div>
     </div>
-  )
+  );
 }

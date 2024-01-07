@@ -1,0 +1,26 @@
+.surahBadge {
+  width: 50%;
+  height: 20px;
+  background-color: rgb(32, 32, 32);
+  border-radius: 0 0 12px 12px;
+  position: sticky;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: rgb(9, 230, 82);
+  opacity: 0;
+  z-index: 9999;
+  margin-top: -20px;
+}
+
+.visible {
+  opacity: 1;
+  transition: opacity 0.7s ease ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-family: 'Scheherazade New', serif ;
+}
+
+
