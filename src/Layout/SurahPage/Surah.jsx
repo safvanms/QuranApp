@@ -45,7 +45,7 @@ export default function Surah() {
         const surah = surahs[number - 1].ayahs;
         setSurahDetails(surahs[number - 1]);
         setNextSurah(surahs[number]);
-        // setFullSurah(surah);
+        setFullSurah(surah);
       } else {
         // Fetch data from the API if not in local storage
         try {
@@ -56,7 +56,7 @@ export default function Surah() {
           const surah = surahs[number - 1].ayahs;
           setSurahDetails(surahs[number - 1]);
           setNextSurah(surahs[number]);
-          // setFullSurah(surah);
+          setFullSurah(surah);
 
           // Store data in local storage
           localStorage.setItem("quranData", JSON.stringify(surahs));
