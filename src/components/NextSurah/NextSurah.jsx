@@ -1,5 +1,5 @@
 import React from "react";
-import "../../Layout/SurahPage/surah.css";
+import "../SurahPage/surah.css";
 import { useNavigate } from "react-router-dom";
 
 export default function NextSurah({ fullSurah, darkMode, nextSurah }) {

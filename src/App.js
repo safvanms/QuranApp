@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './Layout/Home/Home';
-import Surah from './Layout/SurahPage/Surah';
+import Home from './components/Home/Home';
+import Surah from './components/SurahPage/Surah';
 
 export default function App() {
 	return (

@@ -1,6 +1,6 @@
 import React from "react";
 import "./initialPage.css";
-import BG from "../../Assets/quranBG.jpg";
+import BG from "../../Assets/quran_ramadan_BG.jpg";
 import Loader from "../../components/Loader/Loader";
 
 export default function InitialPage() {

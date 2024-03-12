@@ -1,5 +1,5 @@
 import React from "react";
-import "../../Layout/SurahPage/surah.css";
+import "../SurahPage/surah.css";
 import Loader from "../Loader/Loader";
 import convertToArabicNumerals from "../../utils";
 
