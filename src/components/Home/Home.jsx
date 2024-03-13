@@ -72,7 +72,6 @@ export default function Home() {
       const surahNames = surahs.map((surah) => surah.name);
       const englishNames = surahs.map((surah) => surah.englishName);
       const types = surahs.map((surah) => surah.revelationType);
-
       setSurahNumber(surahNumbers);
       setSurahName(surahNames);
       setEnglishName(englishNames);

@@ -11,6 +11,7 @@ import SurahBadge from "../../components/SurahBadge/SurahBadge";
 export default function Surah() {
   const [fullSurah, setFullSurah] = useState(null);
   const [surahDetails, setSurahDetails] = useState("");
+  const [nextSurah, setNextSurah] = useState([]);
 
   const [fontSize, setFontSize] = useState(() => {
     const storedSettings = JSON.parse(
@@ -21,7 +22,6 @@ export default function Surah() {
     };
     return storedSettings.fontSize;
   });
-
   const [darkMode, setDarkMode] = useState(() => {
     const storedSettings = JSON.parse(
       localStorage.getItem("quranSettings")
@@ -31,8 +31,11 @@ export default function Surah() {
     };
     return storedSettings.darkMode;
   });
+  const [clicked, setClicked] = useState(false);
 
-  const [nextSurah, setNextSurah] = useState([]);
+  const handleToggleClicked = () => {
+    setClicked(!clicked);
+  };
 
   const { number } = useParams();
 
@@ -43,6 +46,7 @@ export default function Surah() {
       if (storedQuranData) {
         const surahs = JSON.parse(storedQuranData);
         const surah = surahs[number - 1].ayahs;
+
         setSurahDetails(surahs[number - 1]);
         setNextSurah(surahs[number]);
         setFullSurah(surah);
@@ -96,6 +100,7 @@ export default function Surah() {
       <PageSettings
         handleFontChange={handleFontChange}
         handleTheme={handleTheme}
+        handleToggleClicked={handleToggleClicked}
         darkMode={darkMode}
         fontSize={fontSize}
       />
@@ -114,7 +119,12 @@ export default function Surah() {
           }}
         >
           <div>
-            <SurahPage fullSurah={fullSurah} darkMode={darkMode} />
+            <SurahPage
+              fullSurah={fullSurah}
+              darkMode={darkMode}
+              clicked={clicked}
+              handleToggleClicked={handleToggleClicked}
+            />
           </div>
         </div>
       </div>

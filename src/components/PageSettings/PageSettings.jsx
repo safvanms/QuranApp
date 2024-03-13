@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "../SurahPage/surah.css";
+import { RiPhoneFindLine } from "react-icons/ri";
 
 export default function PageSettings({
   handleFontChange,
   handleTheme,
   darkMode,
   fontSize,
+  handleToggleClicked
 }) {
   return (
     <div>
@@ -19,6 +21,8 @@ export default function PageSettings({
             <option value="28px">Extra Large</option>
           </select>
         </div>
+
+        <RiPhoneFindLine color="gray" size={22} onClick={handleToggleClicked} />
 
         <div className="darkmode">
           <h3 onClick={handleTheme}>
