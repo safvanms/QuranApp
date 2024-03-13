@@ -10,7 +10,7 @@ export default function SurahPage({
   handleToggleClicked,
 }) {
   const [ayahNumber, setAyahNumber] = useState(null);
-  const [ayah, setAyah] = useState("");
+  const [scrolledAyahNumber, setScrolledAyahNumber] = useState(null);
   const ayahRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -27,14 +27,18 @@ export default function SurahPage({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setAyah(ayahNumber);
-    setAyahNumber("");
-    handleToggleClicked();
-
     // Scroll to the specified ayah when submitted
     if (ayahRef.current) {
-      ayahRef.current.scrollIntoView({ behavior: "smooth" });
+      ayahRef.current.scrollIntoView({ behavior: "smooth" }); // Corrected this line
+      // Set the scrolled ayah number for 3 seconds
+      setScrolledAyahNumber(ayahNumber);
+      setTimeout(() => {
+        setScrolledAyahNumber(null);
+      }, 3000);
     }
+  
+    setAyahNumber("");
+    handleToggleClicked();
   };
 
   return (
@@ -67,7 +71,13 @@ export default function SurahPage({
               className="ayahs"
               key={ayah.numberInSurah}
               ref={ayah.numberInSurah === ayahNumber ? ayahRef : null}
-              style={{ color: darkMode ? "#CCCCCC" : "" }}
+              style={{
+                color: darkMode ? "#CCCCCC" : "",
+                backgroundColor:
+                  ayah.numberInSurah === scrolledAyahNumber
+                    ? "#dddd"
+                    : "inherit",
+              }}
             >
               {ayah.text}
             </span>
