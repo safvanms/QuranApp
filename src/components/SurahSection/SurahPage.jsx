@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../SurahPage/surah.css";
 import Loader from "../Loader/Loader";
 import convertToArabicNumerals from "../../utils";
@@ -11,8 +11,15 @@ export default function SurahPage({
 }) {
   const [ayahNumber, setAyahNumber] = useState(null);
   const [ayah, setAyah] = useState("");
-
   const ayahRef = useRef(null);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    // Focus the input when the component is rendered and clicked state is true
+    if (inputRef.current && clicked) {
+      inputRef.current.focus();
+    }
+  }, [clicked]);
 
   const handleChange = (e) => {
     setAyahNumber(Number(e.target.value));
@@ -22,12 +29,12 @@ export default function SurahPage({
     e.preventDefault();
     setAyah(ayahNumber);
     setAyahNumber("");
+    handleToggleClicked();
 
     // Scroll to the specified ayah when submitted
     if (ayahRef.current) {
       ayahRef.current.scrollIntoView({ behavior: "smooth" });
     }
-    handleToggleClicked();
   };
 
   return (
@@ -45,6 +52,7 @@ export default function SurahPage({
                 onChange={handleChange}
                 value={ayahNumber}
                 placeholder="Ayah number"
+                ref={inputRef}
               />
               <button type="submit">Click</button>
             </form>
