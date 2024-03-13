@@ -54,6 +54,7 @@
   line-height: 2.4;
   text-wrap: wrap;
   font-family: "Scheherazade New", serif !important;
+  border-radius: 5px;
 }
 
 .ayah-number {
