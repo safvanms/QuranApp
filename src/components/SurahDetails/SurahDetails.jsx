@@ -9,7 +9,7 @@ export default function SurahDetails({surahDetails,darkMode}) {
         <div
           className="surah-details"
           style={{
-            color: darkMode ? 'grey' : '',
+            color: darkMode ? '#aaaaaa' : '',
             backgroundColor: darkMode ? 'black' : '',
           }}
         >

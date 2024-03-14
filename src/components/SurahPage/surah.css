@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink&display=swap"); */
 /* @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap'); */
 @import url("https://fonts.googleapis.com/css2?family=Scheherazade+New&display=swap");
 /* @import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic&display=swap'); */
@@ -7,11 +7,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
+  height: 55px;
   padding-top: 10px;
   padding-inline: 10px;
-  font-family: "Reem Kufi Ink", sans-serif;
-  text-shadow: 1px 1px 1px rgb(187, 187, 187);
+  font-family: "Scheherazade New", serif !important;
+  font-weight: 900;
+  color: darkgreen;
 }
 
 .surah_bg {
@@ -55,6 +56,7 @@
   text-wrap: wrap;
   font-family: "Scheherazade New", serif !important;
   border-radius: 5px;
+  margin: 8px !important;
 }
 
 .ayah-number {
@@ -125,20 +127,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.5s ease;
 }
 
 .search_ayah {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   background-color: #fff;
-  padding: 20px;
-  border-radius: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  width: 50%;
+}
+
+.search_ayah p{
+  margin: 0 0 5px 0;
+  font-size: 16px;
 }
 
 .search_ayah form {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   gap: 15px;
   font-family: inherit;
@@ -146,25 +157,24 @@
 
 .search_ayah form > input {
   padding: 10px;
-  width: 130px;
+  width: 80px;
   border-radius: 5px;
   border: 1px solid gray;
   text-align: center;
-  font-size: 18px;
-  border: none;
+  font-size: 22px;
+  /* border: none; */
 }
 
 .search_ayah form button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 50px;
-  width: 40px;
-  border-radius: 10px;
+  padding: 7px 10px;
+  border-radius: 5px;
   border: none;
-  background-color: gray;
+  background-color: #525252;
   color: #fff;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 @media (min-width: 801px) {
@@ -220,7 +230,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: rgb(3, 3, 3);
-    padding: 12px 15px 12px 15px;
+    padding: 16px 15px 16px 15px;
   }
 
   .settings select {

@@ -7,7 +7,7 @@ export default function PageSettings({
   handleTheme,
   darkMode,
   fontSize,
-  handleToggleClicked
+  handleToggleClicked,
 }) {
   return (
     <div>
@@ -22,7 +22,13 @@ export default function PageSettings({
           </select>
         </div>
 
-        <RiPhoneFindLine color="gray" size={22} onClick={handleToggleClicked} />
+        <span
+          style={{ display: "flex", alignItems: "center" }}
+          onClick={handleToggleClicked}
+        >
+          <span style={{ color: "#aaaaaa", fontSize: "13px" }}> Search</span>
+          <RiPhoneFindLine color="#aaaaaa" size={22} />
+        </span>
 
         <div className="darkmode">
           <h3 onClick={handleTheme}>
