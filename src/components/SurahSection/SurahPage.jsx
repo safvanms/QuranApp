@@ -26,6 +26,8 @@ export default function SurahPage({
     setAyahNumber(Number(e.target.value));
   };
 
+
+
   // submitting the ayah number
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,13 +47,14 @@ export default function SurahPage({
 
       // Set the scrolled ayah number for 3 seconds
       setScrolledAyahNumber(ayahNumber);
-
       setTimeout(() => {
         setScrolledAyahNumber(null);
       }, 5000);
     }
+    
     setAyahNumber("");
   };
+
 
 
   return (

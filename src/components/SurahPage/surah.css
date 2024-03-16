@@ -42,6 +42,7 @@
   justify-content: center;
   align-items: center;
   min-height: 78vh;
+  text-align-last: center;
 }
 
 .surah {
@@ -50,16 +51,15 @@
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: row-reverse;
-  text-align-last: center;
   margin: 10px 30px 30px 30px;
   padding: 10px !important;
   text-align: justify;
+  text-align-last: center;
   line-height: 2.4;
   font-family: "Scheherazade New", serif !important;
   border-radius: 5px;
   margin: 8px !important;
 }
-
 
 .ayah-number {
   min-width: 20px;
@@ -80,10 +80,6 @@
 .surah_ayahs {
   display: flex;
   flex-wrap: wrap;
-}
-
-.ayahs {
-  text-align: center;
 }
 
 /* next section */
