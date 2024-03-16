@@ -41,23 +41,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  min-height: 78vh;
 }
 
 .surah {
   max-width: 1200px;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   flex-direction: row-reverse;
+  text-align-last: center;
   margin: 10px 30px 30px 30px;
   padding: 10px !important;
   text-align: justify;
   line-height: 2.4;
-  text-wrap: wrap;
   font-family: "Scheherazade New", serif !important;
   border-radius: 5px;
   margin: 8px !important;
 }
+
 
 .ayah-number {
   min-width: 20px;
@@ -73,10 +75,6 @@
   color: grey !important;
 }
 
-.ayah-number:last-child {
-  margin-left: 50%;
-}
-
 /* surah page */
 
 .surah_ayahs {
@@ -84,11 +82,15 @@
   flex-wrap: wrap;
 }
 
+.ayahs {
+  text-align: center;
+}
+
 /* next section */
 
 .next {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  padding: 0 10px 20px 10px;
+  padding: 10px 10px 30px 10px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -106,7 +108,7 @@
   font-weight: 600;
 }
 
-.next p:hover {
+.next p:nth-child(1):hover {
   color: rgb(4, 4, 168);
 }
 
@@ -141,7 +143,7 @@
   width: 50%;
 }
 
-.search_ayah p{
+.search_ayah p {
   margin: 0 0 5px 0;
   font-size: 16px;
 }
@@ -231,6 +233,10 @@
     align-items: center;
     background-color: rgb(3, 3, 3);
     padding: 16px 15px 16px 15px;
+  }
+
+  .options > * {
+    cursor: pointer;
   }
 
   .settings select {

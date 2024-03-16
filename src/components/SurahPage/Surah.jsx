@@ -124,6 +124,7 @@ export default function Surah() {
               darkMode={darkMode}
               clicked={clicked}
               handleToggleClicked={handleToggleClicked}
+              surahDetails={surahDetails}
             />
           </div>
         </div>

@@ -9,14 +9,13 @@ export default function SurahPage({
   darkMode,
   clicked,
   handleToggleClicked,
+  surahDetails,
 }) {
   const [ayahNumber, setAyahNumber] = useState(null);
   const [scrolledAyahNumber, setScrolledAyahNumber] = useState(null);
   const inputRef = useRef(null);
 
   useEffect(() => {
-    // Apply the polyfill
-    // Focus the input when the component is rendered and clicked state is true
     if (inputRef.current && clicked) {
       inputRef.current.focus();
     }
@@ -34,7 +33,11 @@ export default function SurahPage({
 
     // Scroll to the specified ayah when submitted
     const element = document.getElementById(`ayah-${ayahNumber}`);
-    if (element) {
+    if (ayahNumber > fullSurah.length)
+      alert(
+        `Habibi , Surah ${surahDetails.englishName} have only ${fullSurah.length} ayahs. `
+      );
+    else {
       smoothScrollIntoViewIfNeeded(element, {
         behavior: "smooth",
         block: "center",
@@ -59,7 +62,7 @@ export default function SurahPage({
           style={{ display: clicked ? "flex" : "none" }}
         >
           <div className="search_ayah">
-          <p>Find ayah</p>
+            <p>Find ayah</p>
             <form onSubmit={handleSubmit}>
               <input
                 type="number"
@@ -69,7 +72,7 @@ export default function SurahPage({
                 placeholder="Enter"
                 ref={inputRef}
               />
-              <button type="submit">{ayahNumber?"Go":"Cancel"}</button>
+              <button type="submit">{ayahNumber ? "Go" : "Cancel"}</button>
             </form>
           </div>
         </div>
@@ -87,7 +90,7 @@ export default function SurahPage({
                 color: darkMode ? "#CCCCCC" : "",
                 backgroundColor:
                   ayah.numberInSurah === scrolledAyahNumber
-                    ? "#defbe1"
+                    ? "#aaaa"
                     : "inherit",
               }}
             >
