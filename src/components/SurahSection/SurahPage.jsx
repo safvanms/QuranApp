@@ -16,10 +16,13 @@ export default function SurahPage({
   const inputRef = useRef(null);
 
   useEffect(() => {
-    // Retrieve last read ayah number from local storage
-    const hashAyahNumber = parseInt(window.location.hash.substring(1), 10);
-    if (!isNaN(hashAyahNumber)) {
-      setAyahNumber(hashAyahNumber);
+    // Retrieve last read position from local storage
+    const lastScrollPosition = parseInt(
+      localStorage.getItem("lastScrollPosition"),
+      10
+    );
+    if (!isNaN(lastScrollPosition)) {
+      window.scrollTo(0, lastScrollPosition);
     }
 
     if (inputRef.current && clicked) {
@@ -50,27 +53,27 @@ export default function SurahPage({
       });
 
       // show / Highlight the scrolled ayah for 3 seconds
-      // setScrolledAyahNumber(ayahNumber);
-      window.location.hash = `#${ayahNumber}`;
       setScrolledAyahNumber(ayahNumber);
-
       setTimeout(() => {
         setScrolledAyahNumber(null);
       }, 5000);
-
-      // Store the last read ayah number in local storage
-      localStorage.setItem("lastReadAyah", ayahNumber);
     }
 
     setAyahNumber("");
   };
 
-  // Clear stored ayah number from local storage when component unmounts
   useEffect(() => {
+    const handleBeforeUnload = () => {
+      localStorage.setItem("lastScrollPosition", window.scrollY.toString());
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
     return () => {
-      localStorage.removeItem("lastReadAyah");
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
+  
 
   return (
     <>
