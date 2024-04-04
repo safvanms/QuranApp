@@ -16,6 +16,11 @@ export default function SurahPage({
   const inputRef = useRef(null);
 
   useEffect(() => {
+    // Retrieve last read ayah number from local storage
+    const lastReadAyah = localStorage.getItem("lastReadAyah");
+    if (lastReadAyah) {
+      setAyahNumber(Number(lastReadAyah));
+    }
     if (inputRef.current && clicked) {
       inputRef.current.focus();
     }
@@ -25,8 +30,6 @@ export default function SurahPage({
   const handleChange = (e) => {
     setAyahNumber(Number(e.target.value));
   };
-
-
 
   // submitting the ayah number
   const handleSubmit = (e) => {
@@ -45,17 +48,25 @@ export default function SurahPage({
         block: "center",
       });
 
-      // Set the scrolled ayah number for 3 seconds
+      // show / Highlight the scrolled ayah for 3 seconds
       setScrolledAyahNumber(ayahNumber);
       setTimeout(() => {
         setScrolledAyahNumber(null);
       }, 5000);
+
+      // Store the last read ayah number in local storage
+      localStorage.setItem("lastReadAyah", ayahNumber);
     }
-    
+
     setAyahNumber("");
   };
 
-
+  // Clear stored ayah number from local storage when component unmounts
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem("lastReadAyah");
+    };
+  }, []);
 
   return (
     <>
