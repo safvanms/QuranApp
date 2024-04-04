@@ -17,10 +17,11 @@ export default function SurahPage({
 
   useEffect(() => {
     // Retrieve last read ayah number from local storage
-    const lastReadAyah = localStorage.getItem("lastReadAyah");
-    if (lastReadAyah) {
-      setAyahNumber(Number(lastReadAyah));
+    const hashAyahNumber = parseInt(window.location.hash.substring(1), 10);
+    if (!isNaN(hashAyahNumber)) {
+      setAyahNumber(hashAyahNumber);
     }
+
     if (inputRef.current && clicked) {
       inputRef.current.focus();
     }
@@ -49,7 +50,10 @@ export default function SurahPage({
       });
 
       // show / Highlight the scrolled ayah for 3 seconds
+      // setScrolledAyahNumber(ayahNumber);
+      window.location.hash = `#${ayahNumber}`;
       setScrolledAyahNumber(ayahNumber);
+
       setTimeout(() => {
         setScrolledAyahNumber(null);
       }, 5000);
