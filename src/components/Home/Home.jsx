@@ -18,15 +18,15 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const handleBeforeUnload = (event) => {
+    const handlePageHide = () => {
       // Store a session identifier in local storage
       localStorage.setItem(SESSION_IDENTIFIER_KEY, Date.now().toString());
     };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
+  
+    window.addEventListener("pagehide", handlePageHide);
+  
     return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("pagehide", handlePageHide);
     };
   }, []);
 
@@ -142,7 +142,7 @@ export default function Home() {
                             fontSize: "15px",
                             color: "grey",
                             marginLeft: "10px",
-                            fontWeight: "bolder",
+                            fontWeight:"bolder"
                           }}
                         >
                           {englishName[index]}
