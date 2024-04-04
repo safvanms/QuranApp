@@ -8,7 +8,8 @@ import InitialPage from "../InitialPage/InitialPage";
 
 const CACHE_KEY = "quranData";
 const CACHE_TIMESTAMP_KEY = "quranTimestamp";
-const SESSION_IDENTIFIER_KEY = "websiteSession";
+
+// const SESSION_IDENTIFIER_KEY = "websiteSession";
 
 export default function Home() {
   const [surahNumber, setSurahNumber] = useState([]);
@@ -17,18 +18,18 @@ export default function Home() {
   const [type, setType] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const handlePageHide = () => {
-      // Store a session identifier in local storage
-      localStorage.setItem(SESSION_IDENTIFIER_KEY, Date.now().toString());
-    };
-  
-    window.addEventListener("pagehide", handlePageHide);
-  
-    return () => {
-      window.removeEventListener("pagehide", handlePageHide);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handlePageHide = () => {
+  //     // Store a session identifier in local storage
+  //     localStorage.setItem(SESSION_IDENTIFIER_KEY, Date.now().toString());
+  //   };
+
+  //   window.addEventListener("pagehide", handlePageHide);
+
+  //   return () => {
+  //     window.removeEventListener("pagehide", handlePageHide);
+  //   };
+  // }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -96,27 +97,27 @@ export default function Home() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const websiteSession = localStorage.getItem(SESSION_IDENTIFIER_KEY);
+  // useEffect(() => {
+  //   const websiteSession = localStorage.getItem(SESSION_IDENTIFIER_KEY);
 
-    if (websiteSession) {
-      const handleLinkClick = (event) => {
-        event.preventDefault();
-        window.location.href = event.target.href;
-      };
+  //   if (websiteSession) {
+  //     const handleLinkClick = (event) => {
+  //       event.preventDefault();
+  //       window.location.href = event.target.href;
+  //     };
 
-      const links = document.querySelectorAll("a");
-      links.forEach((link) => {
-        link.addEventListener("click", handleLinkClick);
-      });
+  //     const links = document.querySelectorAll("a");
+  //     links.forEach((link) => {
+  //       link.addEventListener("click", handleLinkClick);
+  //     });
 
-      return () => {
-        links.forEach((link) => {
-          link.removeEventListener("click", handleLinkClick);
-        });
-      };
-    }
-  }, []);
+  //     return () => {
+  //       links.forEach((link) => {
+  //         link.removeEventListener("click", handleLinkClick);
+  //       });
+  //     };
+  //   }
+  // }, []);
 
   return (
     <>
@@ -142,7 +143,7 @@ export default function Home() {
                             fontSize: "15px",
                             color: "grey",
                             marginLeft: "10px",
-                            fontWeight:"bolder"
+                            fontWeight: "bolder",
                           }}
                         >
                           {englishName[index]}
