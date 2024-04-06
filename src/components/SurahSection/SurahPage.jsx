@@ -13,8 +13,8 @@ export default function SurahPage({
 }) {
   const [ayahNumber, setAyahNumber] = useState(null);
   const [scrolledAyahNumber, setScrolledAyahNumber] = useState(null);
-  const [lastScrolledAyah, setLastScrolledAyah] = useState(null);
   const inputRef = useRef(null);
+  const debounceTimeoutRef = useRef(null);
 
   useEffect(() => {
     if (inputRef.current && clicked) {
@@ -22,45 +22,35 @@ export default function SurahPage({
     }
   }, [clicked]);
 
-  console.log(lastScrolledAyah);
-
   useEffect(() => {
-    const lastScrolledAyahFromStorage =
-      localStorage.getItem("lastScrolledAyah");
-    const lastScrolledAyahValue =
-      lastScrolledAyahFromStorage !== null
-        ? parseInt(lastScrolledAyahFromStorage, 10)
-        : null;
+    const lastReadAyah = localStorage.getItem("lastScrolledAyah");
 
-    // Scroll to the last scrolled ayah when the component mounts
-    if (lastScrolledAyahValue !== null) {
-      const element = document.getElementById(`ayah-${lastScrolledAyahValue}`);
-      if (element) {
-        smoothScrollIntoViewIfNeeded(element, {
-          behavior: "auto",
-          block: "center",
-        });
-      }
+    // Call function to scroll to the last scrolled ayah when the component mounts
+    if (lastReadAyah !== null) {
+        goToTheAyah();
     }
 
     // Listen for scroll event and update the last scrolled ayah
     const handleScroll = () => {
-      const currentScrolledAyah = getCurrentScrolledAyah();
-      if (currentScrolledAyah !== null) {
-        setLastScrolledAyah(currentScrolledAyah);
-        localStorage.setItem(
-          "lastScrolledAyah",
-          currentScrolledAyah.toString()
-        );
-      }
+      clearTimeout(debounceTimeoutRef.current);
+      debounceTimeoutRef.current = setTimeout(() => {
+        const currentScrolledAyah = getCurrentScrolledAyah();
+        if (currentScrolledAyah !== null) {
+          localStorage.setItem(
+            "lastScrolledAyah",
+            currentScrolledAyah.toString()
+          );
+        }
+      }, 100);
     };
 
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      clearTimeout(debounceTimeoutRef.current);
     };
-  }, []);
+  }, []); 
 
   // Function to calculate the current scrolled ayah based on scroll position
   const getCurrentScrolledAyah = () => {
@@ -72,6 +62,24 @@ export default function SurahPage({
       }
     }
     return null;
+  };
+
+  // Function to scroll last read ayah
+  const goToTheAyah = async () => {
+    const lastReadAyah = localStorage.getItem("lastScrolledAyah");
+    if (lastReadAyah !== null) {
+      console.log(lastReadAyah, "is last read ayah");
+      const element = await document.getElementById(`ayah-${lastReadAyah}`);
+
+      console.log(lastReadAyah, element, "inside fn");
+
+      if (element !== null) {
+        smoothScrollIntoViewIfNeeded(element, {
+          behavior: "smooth",
+          block: "center",
+        });
+      }
+    }
   };
 
   // for navigate into the ayah by input ayah number
@@ -86,7 +94,6 @@ export default function SurahPage({
 
     // Scroll to the specified ayah when submitted
     const element = document.getElementById(`ayah-${ayahNumber}`);
-    console.log(element, "elem");
     if (ayahNumber > fullSurah.length)
       alert(
         `Habibi , Surah ${surahDetails.englishName} have only ${fullSurah.length} ayahs. `
