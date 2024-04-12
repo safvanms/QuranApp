@@ -45,7 +45,7 @@ export default function SurahPage({
           // );
           setCurrentScrolledAyah(getCurrentScrolledAyah);
         }
-      }, 100);
+      }, 1);
     };
 
     window.addEventListener("scroll", handleScroll);
