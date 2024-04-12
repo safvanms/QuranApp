@@ -32,6 +32,7 @@ export default function Surah() {
     return storedSettings.darkMode;
   });
   const [clicked, setClicked] = useState(false);
+  const [currentScrolledAyah, setCurrentScrolledAyah] = useState(null);
 
   const handleToggleClicked = () => {
     setClicked(!clicked);
@@ -95,7 +96,10 @@ export default function Surah() {
 
   return (
     <>
-      <SurahBadge surahDetails={surahDetails} />
+      <SurahBadge
+        surahDetails={surahDetails}
+        currentScrolledAyah={currentScrolledAyah}
+      />
 
       <PageSettings
         handleFontChange={handleFontChange}
@@ -125,6 +129,7 @@ export default function Surah() {
               clicked={clicked}
               handleToggleClicked={handleToggleClicked}
               surahDetails={surahDetails}
+              setCurrentScrolledAyah={setCurrentScrolledAyah}
             />
           </div>
         </div>

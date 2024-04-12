@@ -10,6 +10,7 @@ export default function SurahPage({
   clicked,
   handleToggleClicked,
   surahDetails,
+  setCurrentScrolledAyah
 }) {
   const [ayahNumber, setAyahNumber] = useState(null);
   const [scrolledAyahNumber, setScrolledAyahNumber] = useState(null);
@@ -22,24 +23,27 @@ export default function SurahPage({
     }
   }, [clicked]);
 
+  
   useEffect(() => {
-    const lastReadAyah = localStorage.getItem("lastScrolledAyah");
+    // const lastReadAyah = localStorage.getItem("lastScrolledAyah");
 
-    // Call function to scroll to the last scrolled ayah when the component mounts
-    if (lastReadAyah !== null) {
-        goToTheAyah();
-    }
+    // // Call function to scroll to the last scrolled ayah when the component mounts
+    // if (lastReadAyah !== null) {
+    //     goToTheAyah();
+    // }
 
     // Listen for scroll event and update the last scrolled ayah
+
     const handleScroll = () => {
       clearTimeout(debounceTimeoutRef.current);
       debounceTimeoutRef.current = setTimeout(() => {
         const currentScrolledAyah = getCurrentScrolledAyah();
         if (currentScrolledAyah !== null) {
-          localStorage.setItem(
-            "lastScrolledAyah",
-            currentScrolledAyah.toString()
-          );
+          // localStorage.setItem(
+          //   "lastScrolledAyah",
+          //   currentScrolledAyah.toString()
+          // );
+          setCurrentScrolledAyah(getCurrentScrolledAyah);
         }
       }, 100);
     };
@@ -50,7 +54,8 @@ export default function SurahPage({
       window.removeEventListener("scroll", handleScroll);
       clearTimeout(debounceTimeoutRef.current);
     };
-  }, []); 
+  }, []);
+
 
   // Function to calculate the current scrolled ayah based on scroll position
   const getCurrentScrolledAyah = () => {
@@ -64,23 +69,23 @@ export default function SurahPage({
     return null;
   };
 
-  // Function to scroll last read ayah
-  const goToTheAyah = async () => {
-    const lastReadAyah = localStorage.getItem("lastScrolledAyah");
-    if (lastReadAyah !== null) {
-      console.log(lastReadAyah, "is last read ayah");
-      const element = await document.getElementById(`ayah-${lastReadAyah}`);
+  // // Function to scroll last read ayah
+  // const goToTheAyah =  () => {
+  //   const lastReadAyah = localStorage.getItem("lastScrolledAyah");
+  //   if (lastReadAyah !== null) {
+  //     console.log(lastReadAyah, "is last read ayah");
+  //     const element =  document.getElementById(`ayah-${lastReadAyah}`);
 
-      console.log(lastReadAyah, element, "inside fn");
+  //     console.log(lastReadAyah, element, "inside fn");
 
-      if (element !== null) {
-        smoothScrollIntoViewIfNeeded(element, {
-          behavior: "smooth",
-          block: "center",
-        });
-      }
-    }
-  };
+  //     if (element !== null) {
+  //       smoothScrollIntoViewIfNeeded(element, {
+  //         behavior: "smooth",
+  //         block: "center",
+  //       });
+  //     }
+  //   }
+  // };
 
   // for navigate into the ayah by input ayah number
   const handleChange = (e) => {
