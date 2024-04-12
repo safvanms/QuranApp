@@ -24,7 +24,7 @@
   font-size: 12px;
   font-family: "Scheherazade New", serif;
   text-align: center !important;
-  background-color: black;
+  background-color: #414141;
 }
 
 .badge_surah_name {
@@ -37,8 +37,8 @@
 .surah_length {
   display: block;
   width: 100%;
-  min-height: 5px;
-  background-color: #e0e0e0;
+  min-height: 2px;
+  background-color: #757575;
   color: yellow;
   border-radius: 6px;
   display: flex;
@@ -47,8 +47,8 @@
 }
 
 .head {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background-color: #e0e0e0;
+  background-color: #757575;
 }

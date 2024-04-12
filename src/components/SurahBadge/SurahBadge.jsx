@@ -42,7 +42,6 @@ export default function SurahBadge({ surahDetails, currentScrolledAyah }) {
       <div className={`surahBadge ${isVisible ? "visible" : ""}`}>
         <div className="badge_surah_name">{surahDetails.name}</div>
         <div className="surah_length" style={{ width: progressBarWidth }}>
-          <div className="tail"></div>
           <div className="head"></div>
         </div>
       </div>
