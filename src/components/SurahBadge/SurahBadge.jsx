@@ -33,9 +33,7 @@ export default function SurahBadge({ surahDetails, currentScrolledAyah }) {
     }
   }, [surahDetails]);
 
-  const progressBarWidth = currentScrolledAyah
-    ? (currentScrolledAyah / surahLength) * 100 + "%"
-    : "0%";
+  const progressBarWidth = currentScrolledAyah + "%";
 
   return (
     <>

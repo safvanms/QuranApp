@@ -10,10 +10,11 @@ export default function SurahPage({
   clicked,
   handleToggleClicked,
   surahDetails,
-  setCurrentScrolledAyah
+  setCurrentScrolledAyah,
 }) {
   const [ayahNumber, setAyahNumber] = useState(null);
   const [scrolledAyahNumber, setScrolledAyahNumber] = useState(null);
+  const [totalPageHeight, setTotalPageHeight] = useState(0);
   const inputRef = useRef(null);
   const debounceTimeoutRef = useRef(null);
 
@@ -23,29 +24,36 @@ export default function SurahPage({
     }
   }, [clicked]);
 
-  
   useEffect(() => {
-    // const lastReadAyah = localStorage.getItem("lastScrolledAyah");
+    const calculateTotalPageHeight = () => {
+      const pageContainer = document.querySelector(".surah-page");
+      if (pageContainer) {
+        const height = pageContainer.offsetHeight;
+        setTotalPageHeight(height);
+      }
+    };
 
-    // // Call function to scroll to the last scrolled ayah when the component mounts
-    // if (lastReadAyah !== null) {
-    //     goToTheAyah();
-    // }
+    calculateTotalPageHeight();
 
-    // Listen for scroll event and update the last scrolled ayah
+    const handleResize = () => {
+      calculateTotalPageHeight();
+    };
 
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [fullSurah]);
+
+  useEffect(() => {
     const handleScroll = () => {
       clearTimeout(debounceTimeoutRef.current);
       debounceTimeoutRef.current = setTimeout(() => {
-        const currentScrolledAyah = getCurrentScrolledAyah();
-        if (currentScrolledAyah !== null) {
-          // localStorage.setItem(
-          //   "lastScrolledAyah",
-          //   currentScrolledAyah.toString()
-          // );
-          setCurrentScrolledAyah(getCurrentScrolledAyah);
-        }
-      }, 1);
+        const currentScrollPos = window.scrollY + 356.7;
+        const scrollPercentage = (currentScrollPos / totalPageHeight) * 100;
+        setCurrentScrolledAyah(scrollPercentage);
+      }, 0.5);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -54,37 +62,18 @@ export default function SurahPage({
       window.removeEventListener("scroll", handleScroll);
       clearTimeout(debounceTimeoutRef.current);
     };
-  }, []);
-
+  }, [totalPageHeight, setCurrentScrolledAyah]);
 
   // Function to calculate the current scrolled ayah based on scroll position
-  const getCurrentScrolledAyah = () => {
-    const ayahElements = document.querySelectorAll(".ayahs");
-    for (let i = 0; i < ayahElements.length; i++) {
-      const rect = ayahElements[i].getBoundingClientRect();
-      if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-        return parseInt(ayahElements[i].id.split("-")[1], 10);
-      }
-    }
-    return null;
-  };
-
-  // // Function to scroll last read ayah
-  // const goToTheAyah =  () => {
-  //   const lastReadAyah = localStorage.getItem("lastScrolledAyah");
-  //   if (lastReadAyah !== null) {
-  //     console.log(lastReadAyah, "is last read ayah");
-  //     const element =  document.getElementById(`ayah-${lastReadAyah}`);
-
-  //     console.log(lastReadAyah, element, "inside fn");
-
-  //     if (element !== null) {
-  //       smoothScrollIntoViewIfNeeded(element, {
-  //         behavior: "smooth",
-  //         block: "center",
-  //       });
+  // const getCurrentScrolledAyah = () => {
+  //   const ayahElements = document.querySelectorAll(".ayahs");
+  //   for (let i = 0; i < ayahElements.length; i++) {
+  //     const rect = ayahElements[i].getBoundingClientRect();
+  //     if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+  //       return parseInt(ayahElements[i].id.split("-")[1], 10);
   //     }
   //   }
+  //   return null;
   // };
 
   // for navigate into the ayah by input ayah number
