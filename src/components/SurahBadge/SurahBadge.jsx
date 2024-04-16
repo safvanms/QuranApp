@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./surahBadge.css";
 
-export default function SurahBadge({ surahDetails, currentScrolledAyah }) {
+export default function SurahBadge({ surahDetails, currentScrolledAyah ,number}) {
   const [isVisible, setIsVisible] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [surahLength, setSurahLength] = useState(0);
@@ -38,7 +38,7 @@ export default function SurahBadge({ surahDetails, currentScrolledAyah }) {
   return (
     <>
       <div className={`surahBadge ${isVisible ? "visible" : ""}`}>
-        <div className="badge_surah_name">{surahDetails.name}</div>
+        <div className="badge_surah_name">{surahDetails.name ? surahDetails.name : number && `الجزء ${number}`}</div>
         <div className="surah_length" style={{ width: progressBarWidth }}>
           <div className="head"></div>
         </div>

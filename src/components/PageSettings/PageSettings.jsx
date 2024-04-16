@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../SurahPage/surah.css";
 import { RiPhoneFindLine } from "react-icons/ri";
 
@@ -8,7 +8,10 @@ export default function PageSettings({
   darkMode,
   fontSize,
   handleToggleClicked,
+  navigationType,
 }) {
+
+
   return (
     <div>
       <div className="options">
@@ -23,13 +26,15 @@ export default function PageSettings({
           </select>
         </div>
 
-        <span
-          style={{ display: "flex", alignItems: "center" }}
-          onClick={handleToggleClicked}
-        >
-          <span style={{ color: "#aaaaaa", fontSize: "13px" }}> Search</span>
-          <RiPhoneFindLine color="#aaaaaa" size={22} />
-        </span>
+        {navigationType == "passingSurah" ? (
+          <span
+            style={{ display: "flex", alignItems: "center" }}
+            onClick={handleToggleClicked}
+          >
+            <span style={{ color: "#aaaaaa", fontSize: "13px" }}> Search</span>
+            <RiPhoneFindLine color="#aaaaaa" size={22} />
+          </span>
+        ): ''}
 
         <div className="darkmode">
           <h3 onClick={handleTheme}>

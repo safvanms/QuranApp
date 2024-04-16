@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./surah.css";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import SurahPage from "../../components/SurahSection/SurahPage";
 import NextSurah from "../../components/NextSurah/NextSurah";
 import SurahDetails from "../../components/SurahDetails/SurahDetails";
 import PageSettings from "../../components/PageSettings/PageSettings";
 import SurahBadge from "../../components/SurahBadge/SurahBadge";
+import NextJuz from "../NextJuz/NextJuz";
 
 export default function Surah() {
   const [fullSurah, setFullSurah] = useState(null);
   const [surahDetails, setSurahDetails] = useState("");
   const [nextSurah, setNextSurah] = useState([]);
-
   const [fontSize, setFontSize] = useState(() => {
     const storedSettings = JSON.parse(
       localStorage.getItem("quranSettings")
@@ -32,13 +32,17 @@ export default function Surah() {
     return storedSettings.darkMode;
   });
   const [clicked, setClicked] = useState(false);
-  const [currentScrolledAyah, setCurrentScrolledAyah] = useState(null);
+  const [currentScrolledAyah, setCurrentScrolledAyah] = useState(0);
+  const [fullData, setFullData] = useState([]);
 
   const handleToggleClicked = () => {
     setClicked(!clicked);
   };
 
   const { number } = useParams();
+
+  const location = useLocation();
+  const navigationType = location.state ? location.state.navigationType : null;
 
   useEffect(() => {
     const getSurah = async () => {
@@ -47,10 +51,17 @@ export default function Surah() {
       if (storedQuranData) {
         const surahs = JSON.parse(storedQuranData);
         const surah = surahs[number - 1].ayahs;
+        const juzsData = extractJuzsData(surahs);
 
-        setSurahDetails(surahs[number - 1]);
-        setNextSurah(surahs[number]);
-        setFullSurah(surah);
+        if (navigationType == "passingSurah") {
+          setSurahDetails(surahs[number - 1]);
+          setNextSurah(surahs[number]);
+          setFullSurah(surah);
+          setFullData(surah);
+        } else if (navigationType == "passingJuz") {
+          const selectedJuz = juzsData[parseInt(number) - 1];
+          setFullData(selectedJuz);
+        }
       } else {
         // Fetch data from the API if not in local storage
         try {
@@ -59,9 +70,17 @@ export default function Surah() {
           );
           const surahs = response.data.data.surahs;
           const surah = surahs[number - 1].ayahs;
-          setSurahDetails(surahs[number - 1]);
-          setNextSurah(surahs[number]);
-          setFullSurah(surah);
+          const juzsData = extractJuzsData(surahs);
+
+          if (navigationType == "passingSurah") {
+            setSurahDetails(surahs[number - 1]);
+            setNextSurah(surahs[number]);
+            setFullSurah(surah);
+            setFullData(surah);
+          } else if (navigationType == "passingJuz") {
+            const selectedJuz = juzsData[parseInt(number) - 1];
+            setFullData(selectedJuz);
+          }
 
           // Store data in local storage
           localStorage.setItem("quranData", JSON.stringify(surahs));
@@ -78,6 +97,24 @@ export default function Surah() {
     getSurah();
   }, [number, fontSize, darkMode]);
 
+  // extracting juz
+
+  const extractJuzsData = (surahs) => {
+    const juzsData = [];
+    surahs.forEach((surah) => {
+      surah.ayahs.forEach((ayah) => {
+        const juzNumber = ayah.juz;
+        if (!juzsData[juzNumber - 1]) {
+          juzsData[juzNumber - 1] = [];
+        }
+        juzsData[juzNumber - 1].push(ayah);
+      });
+    });
+    return juzsData;
+  };
+
+  // handling the font sizes
+
   const handleFontChange = (event) => {
     localStorage.setItem(
       "quranSettings",
@@ -85,6 +122,8 @@ export default function Surah() {
     );
     setFontSize(event.target.value);
   };
+
+  // handling the theme
 
   const handleTheme = () => {
     localStorage.setItem(
@@ -94,51 +133,108 @@ export default function Surah() {
     setDarkMode(!darkMode);
   };
 
+
   return (
     <>
-      <SurahBadge
-        surahDetails={surahDetails}
-        currentScrolledAyah={currentScrolledAyah}
-      />
+      {navigationType === "passingSurah" ? (
+        <>
+          <SurahBadge
+            surahDetails={surahDetails}
+            currentScrolledAyah={currentScrolledAyah}
+          />
 
-      <PageSettings
-        handleFontChange={handleFontChange}
-        handleTheme={handleTheme}
-        handleToggleClicked={handleToggleClicked}
-        darkMode={darkMode}
-        fontSize={fontSize}
-      />
+          <PageSettings
+            handleFontChange={handleFontChange}
+            handleTheme={handleTheme}
+            handleToggleClicked={handleToggleClicked}
+            darkMode={darkMode}
+            fontSize={fontSize}
+            navigationType={navigationType}
+          />
 
-      <SurahDetails darkMode={darkMode} surahDetails={surahDetails} />
+          <SurahDetails darkMode={darkMode} surahDetails={surahDetails} />
 
-      <div
-        className="surah-page"
-        style={{ backgroundColor: darkMode ? "black" : "white" }}
-      >
-        <div
-          className="surah"
-          style={{
-            fontSize,
-            ...(fullSurah ? { border: "3px double rgb(49, 143, 60)" } : {}),
-          }}
-        >
-          <div>
-            <SurahPage
-              fullSurah={fullSurah}
-              darkMode={darkMode}
-              clicked={clicked}
-              handleToggleClicked={handleToggleClicked}
-              surahDetails={surahDetails}
-              setCurrentScrolledAyah={setCurrentScrolledAyah}
-            />
+          <div
+            className="surah-page"
+            style={{ backgroundColor: darkMode ? "#040D12" : "white" }}
+          >
+            <div
+              className="surah"
+              style={{
+                fontSize,
+                ...(fullData && fullData.length > 0
+                  ? { border: "3px double rgb(49, 143, 60)" }
+                  : {}),
+              }}
+            >
+              <div>
+                <SurahPage
+                  fullData={fullData}
+                  pageType={navigationType}
+                  darkMode={darkMode}
+                  clicked={clicked}
+                  handleToggleClicked={handleToggleClicked}
+                  surahDetails={surahDetails}
+                  setCurrentScrolledAyah={setCurrentScrolledAyah}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <NextSurah
-        darkMode={darkMode}
-        fullSurah={fullSurah}
-        nextSurah={nextSurah}
-      />
+          <NextSurah
+            darkMode={darkMode}
+            fullSurah={fullSurah}
+            nextSurah={nextSurah}
+          />
+        </>
+      ) : (
+        navigationType === "passingJuz" && (
+          <>
+            <SurahBadge
+              surahDetails={surahDetails}
+              number={number}
+              currentScrolledAyah={currentScrolledAyah}
+            />
+
+            <PageSettings
+              handleFontChange={handleFontChange}
+              handleTheme={handleTheme}
+              handleToggleClicked={handleToggleClicked}
+              darkMode={darkMode}
+              fontSize={fontSize}
+              navigationType={navigationType}
+            />
+
+            <SurahDetails darkMode={darkMode} number={number} />
+
+            <div
+              className="surah-page"
+              style={{ backgroundColor: darkMode ? "#040D12" : "white" }}
+            >
+              <div
+                className="surah"
+                style={{
+                  fontSize,
+                  ...(fullData && fullData.length > 0
+                    ? { border: "3px double rgb(49, 143, 60)" }
+                    : ""),
+                }}
+              >
+                <div>
+                  <SurahPage
+                    fullData={fullData}
+                    darkMode={darkMode}
+                    clicked={clicked}
+                    handleToggleClicked={handleToggleClicked}
+                    surahDetails={surahDetails}
+                    setCurrentScrolledAyah={setCurrentScrolledAyah}
+                  />
+                </div>
+              </div>
+            </div>
+            <NextJuz darkMode={darkMode} number={number} />
+          </>
+        )
+      )}
     </>
   );
 }

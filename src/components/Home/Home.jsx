@@ -1,15 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./home.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../Other/Header";
 import Footer from "../Other/Footer";
 import InitialPage from "../InitialPage/InitialPage";
+import SectionButton from "../SectionButtons/SectionButton";
+import convertToArabicNumerals from "../../utils";
 
 const CACHE_KEY = "quranData";
 const CACHE_TIMESTAMP_KEY = "quranTimestamp";
-
-// const SESSION_IDENTIFIER_KEY = "websiteSession";
 
 export default function Home() {
   const [surahNumber, setSurahNumber] = useState([]);
@@ -17,20 +17,22 @@ export default function Home() {
   const [englishName, setEnglishName] = useState([]);
   const [type, setType] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [juz, setJuz] = useState([]);
+  const [selectedType, setSelectedType] = useState(
+    localStorage.getItem("selectedType") || "surah"
+  );
+  const navigate = useNavigate();
 
   // useEffect(() => {
-  //   const handlePageHide = () => {
-  //     // Store a session identifier in local storage
-  //     localStorage.setItem(SESSION_IDENTIFIER_KEY, Date.now().toString());
-  //   };
-
-  //   window.addEventListener("pagehide", handlePageHide);
-
-  //   return () => {
-  //     window.removeEventListener("pagehide", handlePageHide);
-  //   };
+  //   const storedSelectedType = localStorage.getItem("selectedType");
+  //   console.log(storedSelectedType)
+  //   if (storedSelectedType === "passingSurah" || storedSelectedType === null) {
+  //     setSelectedType("surah");
+  //   } else {
+  //     setSelectedType("juz");
+  //   }
   // }, []);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -82,86 +84,126 @@ export default function Home() {
       }
     };
 
+    const extractJuzsData = (surahs) => {
+      const juzsData = [];
+      surahs.forEach((surah) => {
+        surah.ayahs.forEach((ayah) => {
+          const juzNumber = ayah.juz;
+          if (!juzsData[juzNumber - 1]) {
+            juzsData[juzNumber - 1] = [];
+          }
+          juzsData[juzNumber - 1].push(ayah);
+        });
+      });
+      return juzsData;
+    };
+
     const updateState = (surahs) => {
       const surahNumbers = surahs.map((surah) => surah.number);
       const surahNames = surahs.map((surah) => surah.name);
       const englishNames = surahs.map((surah) => surah.englishName);
       const types = surahs.map((surah) => surah.revelationType);
+      const juzsData = extractJuzsData(surahs);
+
       setSurahNumber(surahNumbers);
       setSurahName(surahNames);
       setEnglishName(englishNames);
       setType(types);
       setLoading(false);
+      setJuz(juzsData);
     };
 
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   const websiteSession = localStorage.getItem(SESSION_IDENTIFIER_KEY);
 
-  //   if (websiteSession) {
-  //     const handleLinkClick = (event) => {
-  //       event.preventDefault();
-  //       window.location.href = event.target.href;
-  //     };
+  const handleNavigate = (path, type) => {
+    if (type === "passingSurah") {
+      setSelectedType("surah");
+      localStorage.setItem("selectedType", "surah");
+    } else {
+      setSelectedType("juz");
+      localStorage.setItem("selectedType", "juz");
+    }
+    navigate(`${path}`, { state: { navigationType: type } });
+  };
 
-  //     const links = document.querySelectorAll("a");
-  //     links.forEach((link) => {
-  //       link.addEventListener("click", handleLinkClick);
-  //     });
-
-  //     return () => {
-  //       links.forEach((link) => {
-  //         link.removeEventListener("click", handleLinkClick);
-  //       });
-  //     };
-  //   }
-  // }, []);
 
   return (
     <>
       {loading ? (
         <InitialPage />
       ) : (
-        <div>
+        <>
           <Header />
+          <SectionButton setSelectedType={setSelectedType} 
+          initialSelectedType={localStorage.getItem("selectedType")}
+          />
           <div className="home-container">
             <div className="home-sec">
-              {surahNumber.length > 0 &&
-                surahNumber?.map((number, index) => (
-                  <Link
-                    style={{ color: "black", textDecoration: "none" }}
-                    to={`/${number}`}
-                    key={index}
-                  >
-                    <div className="surah-list">
-                      <div className="surahNumberEngName">
-                        <div>{number}</div>
-                        <div
-                          style={{
-                            fontSize: "15px",
-                            color: "grey",
-                            marginLeft: "10px",
-                            fontWeight: "bolder",
-                          }}
-                        >
-                          {englishName[index]}
+              {selectedType === "surah"
+                ? surahNumber?.map((number, index) => (
+                    <div
+                      onClick={() => handleNavigate(number, "passingSurah")}
+                      key={index}
+                    >
+                      <div className="surah-list">
+                        <div className="surahNumberEngName">
+                          <div>{number}</div>
+                          <div
+                            style={{
+                              fontSize: "15px",
+                              color: "grey",
+                              marginLeft: "10px",
+                              fontWeight: "bolder",
+                            }}
+                          >
+                            {englishName[index]}
+                          </div>
+                        </div>
+                        <div className="type">
+                          {type[index] === "Meccan" ? "🕋" : "🕌"}
+                        </div>
+                        <span className="surah-name">
+                          <span>{surahName[index]}</span>
+                        </span>
+                      </div>
+                    </div>
+                  ))
+                : selectedType === "juz"
+                ? // Render Juzs
+                  juz.map((juz, index) => (
+                    <div
+                      key={index}
+                      onClick={() =>
+                        handleNavigate(`${index + 1}`, "passingJuz")
+                      }
+                    >
+                      <div className="surah-list" key={index}>
+                        <div className="surahNumberEngName">
+                          <div
+                            style={{
+                              fontSize: "15px",
+                              color: "grey",
+                              marginLeft: "10px",
+                              fontWeight: "bolder",
+                            }}
+                          >
+                            Juz {index + 1}
+                          </div>
+                        </div>
+                        <div className="juz_number">
+                          {" "}
+                          الجزء &nbsp;{convertToArabicNumerals(index + 1)}{" "}
                         </div>
                       </div>
-                      <div className="type">
-                        {type[index] === "Meccan" ? "🕋" : "🕌"}
-                      </div>
-                      <span className="surah-name">
-                        <span>{surahName[index]}</span>
-                      </span>
                     </div>
-                  </Link>
-                ))}
+                  ))
+                : null}
             </div>
           </div>
           <Footer />
-        </div>
+        </>
       )}
     </>
   );

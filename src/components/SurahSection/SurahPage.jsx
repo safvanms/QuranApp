@@ -5,11 +5,10 @@ import convertToArabicNumerals from "../../utils";
 import smoothScrollIntoViewIfNeeded from "smooth-scroll-into-view-if-needed";
 
 export default function SurahPage({
-  fullSurah,
+  fullData, // Data for the Surah or Juz
   darkMode,
   clicked,
   handleToggleClicked,
-  surahDetails,
   setCurrentScrolledAyah,
 }) {
   const [ayahNumber, setAyahNumber] = useState(null);
@@ -26,9 +25,11 @@ export default function SurahPage({
 
   useEffect(() => {
     const calculateTotalPageHeight = () => {
+      // To find the total height of the current Surah/Juz page
       const pageContainer = document.querySelector(".surah-page");
       if (pageContainer) {
         const height = pageContainer.offsetHeight;
+        // Store the height into the state
         setTotalPageHeight(height);
       }
     };
@@ -44,15 +45,18 @@ export default function SurahPage({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [fullSurah]);
+  }, [fullData]);
 
   useEffect(() => {
     const handleScroll = () => {
       clearTimeout(debounceTimeoutRef.current);
       debounceTimeoutRef.current = setTimeout(() => {
-        const currentScrollPos = window.scrollY + 356.7;
+        const currentScrollPos = window.scrollY + 555;
+        // Total height of the page stored in the state totalPageHeight
         const scrollPercentage = (currentScrollPos / totalPageHeight) * 100;
-        setCurrentScrolledAyah(scrollPercentage);
+        if (scrollPercentage <= 100) {
+          setCurrentScrolledAyah(scrollPercentage);
+        }
       }, 0.5);
     };
 
@@ -64,41 +68,25 @@ export default function SurahPage({
     };
   }, [totalPageHeight, setCurrentScrolledAyah]);
 
-  // Function to calculate the current scrolled ayah based on scroll position
-  // const getCurrentScrolledAyah = () => {
-  //   const ayahElements = document.querySelectorAll(".ayahs");
-  //   for (let i = 0; i < ayahElements.length; i++) {
-  //     const rect = ayahElements[i].getBoundingClientRect();
-  //     if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-  //       return parseInt(ayahElements[i].id.split("-")[1], 10);
-  //     }
-  //   }
-  //   return null;
-  // };
-
-  // for navigate into the ayah by input ayah number
   const handleChange = (e) => {
     setAyahNumber(Number(e.target.value));
   };
 
-  // submitting the ayah number
   const handleSubmit = (e) => {
     e.preventDefault();
     handleToggleClicked();
 
     // Scroll to the specified ayah when submitted
     const element = document.getElementById(`ayah-${ayahNumber}`);
-    if (ayahNumber > fullSurah.length)
-      alert(
-        `Habibi , Surah ${surahDetails.englishName} have only ${fullSurah.length} ayahs. `
-      );
+    if (ayahNumber > fullData.length)
+      alert(`Habibi, this page only has ${fullData.length} ayahs.`);
     else {
       smoothScrollIntoViewIfNeeded(element, {
         behavior: "smooth",
         block: "center",
       });
 
-      // show or Highlight the scrolled ayah for 3 seconds
+      // Highlight the scrolled ayah for 3 seconds
       setScrolledAyahNumber(ayahNumber);
       setTimeout(() => {
         setScrolledAyahNumber(null);
@@ -132,31 +120,30 @@ export default function SurahPage({
         </div>
       )}
 
-      {fullSurah ? (
-        fullSurah?.map((ayah) => (
+      {fullData && fullData.length > 0 ? (
+        fullData?.map((item) => (
           <>
             <span
               className="ayahs"
-              key={ayah.numberInSurah}
-              // ref={ayah.numberInSurah === ayahNumber ? ayahRef : null}
-              id={`ayah-${ayah.numberInSurah}`}
+              key={item.numberInSurah}
+              id={`ayah-${item.numberInSurah}`}
               style={{
-                color: darkMode ? "#CCCCCC" : "",
+                color: darkMode ? "#e5ddddee" : "",
                 backgroundColor:
-                  ayah.numberInSurah === scrolledAyahNumber
+                  item.numberInSurah === scrolledAyahNumber
                     ? "#aaaa"
                     : "inherit",
               }}
             >
-              {ayah.text}
+              {item.text}
             </span>
             <span className="ayah-number">
-              {convertToArabicNumerals(ayah.numberInSurah)}
+              {convertToArabicNumerals(item.numberInSurah)}
             </span>
           </>
         ))
       ) : (
-        <div className="loader_">
+        <div className="loader">
           <Loader />
         </div>
       )}

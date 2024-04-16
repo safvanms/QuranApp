@@ -3,7 +3,6 @@
   display: flex;
   height: 100%;
   justify-content: center;
-  /* background-color: rgb(25, 25, 25); */
   background-color: aliceblue;
 } 
   
@@ -60,6 +59,12 @@
   background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW4Gnz7QBHNsl6CmaKrXJ5BPg_ginmRi7MNA&usqp=CAU");
   background-repeat: no-repeat;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 3px 5px;
+  min-height: 60px;
+}
+
+.juz_number{
+  font-family: 'Scheherazade New', serif ;
+  font-size: 22px;
 }
 
 
