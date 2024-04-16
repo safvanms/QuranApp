@@ -12,7 +12,7 @@
   padding: 20px 15px;
   font-family: "Scheherazade New", serif !important;
   font-weight: 900;
-  color: darkgreen;
+  color: #50727b;
 }
 
 .surah_bg {
@@ -22,7 +22,7 @@
 .surah-details p,
 .surah-details h4 {
   font-size: 14px;
-  width: 25% ;
+  width: 25%;
   font-weight: 600;
 }
 
@@ -58,7 +58,7 @@
   line-height: 2.4;
   font-family: "Scheherazade New", serif !important;
   border-radius: 5px;
-  margin: 8px !important;
+  height: 100% !important;
 }
 
 .ayah-number {
@@ -85,7 +85,7 @@
 /* next section */
 
 .next {
-  font-family: "Scheherazade New", serif ;
+  font-family: "Scheherazade New", serif;
   padding: 10px 10px 30px 10px;
   cursor: pointer;
   display: flex;
@@ -108,10 +108,11 @@
   color: rgb(4, 4, 168);
 }
 
-.loader_ {
+.loader{
   width: 50vw;
   margin: 0 auto;
 }
+
 
 /* search form  */
 

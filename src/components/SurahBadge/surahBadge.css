@@ -21,7 +21,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  font-size: 12px;
+  font-size: 13px;
   font-family: "Scheherazade New", serif;
   text-align: center !important;
   background-color: #183D3D;
@@ -38,8 +38,7 @@
   display: block;
   width: 100%;
   min-height: 2px;
-  background-color: #757575;
-  /* border-radius: 50px; */
+  background-color: #9DB2BF;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -49,5 +48,5 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #757575;
+  background-color: #9DB2BF;
 }

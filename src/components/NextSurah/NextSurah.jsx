@@ -23,7 +23,7 @@ export default function NextSurah({ fullSurah, darkMode, nextSurah }) {
         <div
           className="next"
           style={{
-            backgroundColor: darkMode ? "black" : "",
+            backgroundColor: darkMode ? "#040d12" : "",
           }}
         >
           <p className={darkMode && "darkModeText"} onClick={getNextSurah}>

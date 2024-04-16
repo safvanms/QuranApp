@@ -163,7 +163,7 @@ export default function Surah() {
               style={{
                 fontSize,
                 ...(fullData && fullData.length > 0
-                  ? { border: "3px double rgb(49, 143, 60)" }
+                  ? { border: "4px double #50727B" }
                   : {}),
               }}
             >
@@ -215,7 +215,7 @@ export default function Surah() {
                 style={{
                   fontSize,
                   ...(fullData && fullData.length > 0
-                    ? { border: "3px double rgb(49, 143, 60)" }
+                    ? { border: "4px double #78A083" }
                     : ""),
                 }}
               >
