@@ -13,6 +13,7 @@ export default function InitialPage() {
           <Loader/>
         </div>
       </div>
+      <p style={{fontSize:"9px" , marginTop:"10px"}}>please wait while we're loading ... </p>
     </div>
   );
 }
