@@ -11,7 +11,6 @@ export default function PageSettings({
   navigationType,
 }) {
 
-
   return (
     <div>
       <div className="options">
@@ -26,15 +25,15 @@ export default function PageSettings({
           </select>
         </div>
 
-        {navigationType == "passingSurah" ? (
-          <span
+        {navigationType === "passingSurah"   && (
+          <div
             style={{ display: "flex", alignItems: "center" }}
-            onClick={handleToggleClicked}
+            onClick={()=>handleToggleClicked()}
           >
-            <span style={{ color: "#aaaaaa", fontSize: "13px" }}> Search</span>
+            <span style={{ color: "#aaaaaa", fontSize: "14px" }}> Search</span>
             <RiPhoneFindLine color="#aaaaaa" size={22} />
-          </span>
-        ): ''}
+          </div>
+        )}
 
         <div className="darkmode">
           <h3 onClick={handleTheme}>

@@ -138,6 +138,7 @@
   padding: 15px;
   border-radius: 10px;
   width: 50%;
+  z-index: 9999;
 }
 
 .search_ayah p {
