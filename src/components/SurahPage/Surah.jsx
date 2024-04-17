@@ -40,12 +40,19 @@ export default function Surah() {
   };
 
   const { number } = useParams();
-
   const location = useLocation();
+
   const navigationType = location.state ? location.state.navigationType : null;
 
   useEffect(() => {
     const getSurah = async () => {
+      //fallback into '/' when the number is invalid
+      if (number > 114 || isNaN(number) || number === null) {
+        alert('Invalid rout , Check the URL ')
+        window.location.pathname = "/";
+        
+        return;
+      }
       // Check if data is present in local storage
       const storedQuranData = localStorage.getItem("quranData");
       if (storedQuranData) {
@@ -53,14 +60,22 @@ export default function Surah() {
         const surah = surahs[number - 1].ayahs;
         const juzsData = extractJuzsData(surahs);
 
+        // Pass the data if the type is Surah
         if (navigationType == "passingSurah") {
           setSurahDetails(surahs[number - 1]);
           setNextSurah(surahs[number]);
           setFullSurah(surah);
           setFullData(surah);
+          // Pass the data if the type is Juz
         } else if (navigationType == "passingJuz") {
           const selectedJuz = juzsData[parseInt(number) - 1];
           setFullData(selectedJuz);
+          // Pass the data into surah if the type is null
+        } else if (navigationType === null) {
+          setSurahDetails(surahs[number - 1]);
+          setNextSurah(surahs[number]);
+          setFullSurah(surah);
+          setFullData(surah);
         }
       } else {
         // Fetch data from the API if not in local storage
@@ -72,14 +87,22 @@ export default function Surah() {
           const surah = surahs[number - 1].ayahs;
           const juzsData = extractJuzsData(surahs);
 
+          // Pass the data if the type is Surah
           if (navigationType == "passingSurah") {
             setSurahDetails(surahs[number - 1]);
             setNextSurah(surahs[number]);
             setFullSurah(surah);
             setFullData(surah);
+            // Pass the data if the type is Juz
           } else if (navigationType == "passingJuz") {
             const selectedJuz = juzsData[parseInt(number) - 1];
             setFullData(selectedJuz);
+            // Pass the data into surah if the type is null
+          } else if (navigationType === null) {
+            setSurahDetails(surahs[number - 1]);
+            setNextSurah(surahs[number]);
+            setFullSurah(surah);
+            setFullData(surah);
           }
 
           // Store data in local storage
@@ -97,8 +120,7 @@ export default function Surah() {
     getSurah();
   }, [number, fontSize, darkMode]);
 
-  // extracting juz
-
+  // extracting by juz from the data
   const extractJuzsData = (surahs) => {
     const juzsData = [];
     surahs.forEach((surah) => {
@@ -114,7 +136,6 @@ export default function Surah() {
   };
 
   // handling the font sizes
-
   const handleFontChange = (event) => {
     localStorage.setItem(
       "quranSettings",
@@ -124,7 +145,6 @@ export default function Surah() {
   };
 
   // handling the theme
-
   const handleTheme = () => {
     localStorage.setItem(
       "quranSettings",
@@ -133,10 +153,9 @@ export default function Surah() {
     setDarkMode(!darkMode);
   };
 
-
   return (
     <>
-      {navigationType === "passingSurah" ? (
+      {navigationType === "passingSurah" || navigationType === null ? (
         <>
           <SurahBadge
             surahDetails={surahDetails}
