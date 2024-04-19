@@ -7,10 +7,11 @@ export default function NextSurah({ fullSurah, darkMode, nextSurah }) {
 
   const getNextSurah = () => {
     if (nextSurah && nextSurah.number) {
-      navigate(`/${nextSurah.number}`, { replace: true });
-    } else {
-      navigate("/", { replace: true });
-    }
+      navigate(`/${nextSurah.number}`, {
+        state: { navigationType: "passingSurah" },
+        replace: true,
+      });
+    } else return;
   };
 
   const getFullSurah = () => {

@@ -13,8 +13,9 @@ export default function NextJuz({ darkMode, number }) {
     if (nextJuzNumber <= 30) {
       navigate(`/${nextJuzNumber}`, {
         state: { navigationType: "passingJuz" },
-        replace: true,
-      });
+        replace: true
+      }
+    );
     } else {
       navigate("/", { replace: true });
     }

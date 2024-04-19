@@ -25,7 +25,7 @@ export default function PageSettings({
           </select>
         </div>
 
-        {navigationType === "passingSurah"   && (
+        {navigationType === "passingSurah"  && (
           <div
             style={{ display: "flex", alignItems: "center" }}
             onClick={()=>handleToggleClicked()}

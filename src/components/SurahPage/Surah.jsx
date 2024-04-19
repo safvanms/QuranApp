@@ -44,6 +44,8 @@ export default function Surah() {
 
   const navigationType = location.state ? location.state.navigationType : null;
 
+  console.log(navigationType)
+
   useEffect(() => {
     const getSurah = async () => {
       //fallback into '/' when the number is invalid
@@ -189,7 +191,7 @@ export default function Surah() {
               <div>
                 <SurahPage
                   fullData={fullData}
-                  pageType={navigationType}
+                  // pageType={navigationType}
                   darkMode={darkMode}
                   clicked={clicked}
                   handleToggleClicked={handleToggleClicked}
@@ -244,7 +246,6 @@ export default function Surah() {
                     darkMode={darkMode}
                     clicked={clicked}
                     handleToggleClicked={handleToggleClicked}
-                    surahDetails={surahDetails}
                     setCurrentScrolledAyah={setCurrentScrolledAyah}
                   />
                 </div>
