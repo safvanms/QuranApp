@@ -108,11 +108,10 @@
   color: rgb(4, 4, 168);
 }
 
-.loader{
+.loader {
   width: 50vw;
   margin: 0 auto;
 }
-
 
 /* search form  */
 
@@ -177,7 +176,7 @@
   font-size: 12px;
 }
 
-@media (min-width: 801px) {
+@media (min-width: 851px) {
   .surah-details {
     max-width: 1200px;
     justify-content: space-between;
@@ -214,7 +213,7 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 850px) {
   .surah {
     width: 100%;
     margin-inline: 5px;
@@ -239,7 +238,7 @@
     background-color: #000000;
     color: #fff;
     border-radius: 10px;
-    border-color:#78A083;
+    border-color: #78a083;
   }
   .loader_ {
     width: 88vw;

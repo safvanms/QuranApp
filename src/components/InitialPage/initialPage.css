@@ -47,6 +47,10 @@
   white-space: nowrap;
 }
 
+.initial_page p {
+  display: none;
+}
+
 @media (max-width: 800px) {
   .img_section {
     height: 88vh;
@@ -61,6 +65,9 @@
   .initial_page h1 {
     font-size: 20px;
     left: 20%;
+  }
+  .initial_page p {
+    display: block;
   }
 }
 

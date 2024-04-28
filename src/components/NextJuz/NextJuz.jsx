@@ -2,7 +2,7 @@ import React from "react";
 import "../SurahPage/surah.css";
 import { useNavigate } from "react-router-dom";
 
-export default function NextJuz({ darkMode, number }) {
+export default function NextJuz({ darkMode, number, fullData }) {
   const navigate = useNavigate();
 
   const nextJuz = parseInt(number) + 1;
@@ -13,9 +13,8 @@ export default function NextJuz({ darkMode, number }) {
     if (nextJuzNumber <= 30) {
       navigate(`/${nextJuzNumber}`, {
         state: { navigationType: "passingJuz" },
-        replace: true
-      }
-    );
+        replace: true,
+      });
     } else {
       navigate("/", { replace: true });
     }
@@ -25,26 +24,30 @@ export default function NextJuz({ darkMode, number }) {
     navigate("/", { replace: true });
   };
 
+
   return (
-    <div>
-      <div
-        className="next"
-        style={{
-          backgroundColor: darkMode ? "black" : "",
-        }}
-      >
-        {number < 30 ? (
-          <p className={darkMode && "darkModeText"} onClick={getNextJuz}>
-            الجزء {nextJuz}
+    <>
+      {" "}
+      {fullData.length > 0 && (
+        <div
+          className="next"
+          style={{
+            backgroundColor: darkMode ? "black" : "",
+          }}
+        >
+          {number < 30 ? (
+            <p className={darkMode && "darkModeText"} onClick={getNextJuz}>
+              الجزء {nextJuz}
+            </p>
+          ) : (
+            ""
+          )}
+          <p className={darkMode && "darkModeText"} onClick={getFullSurah}>
+            {" "}
+            القرآن
           </p>
-        ) : (
-          ""
-        )}
-        <p className={darkMode && "darkModeText"} onClick={getFullSurah}>
-          {" "}
-          القرآن
-        </p>
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 }

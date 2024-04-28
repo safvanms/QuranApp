@@ -36,7 +36,8 @@ export default function Surah() {
   const [fullData, setFullData] = useState([]);
 
   const handleToggleClicked = () => {
-    setClicked(!clicked);
+    setClicked((prevClicked) => (prevClicked = !clicked));
+    // setClicked(!clicked)
   };
 
   const { number } = useParams();
@@ -44,15 +45,13 @@ export default function Surah() {
 
   const navigationType = location.state ? location.state.navigationType : null;
 
-  console.log(navigationType)
-
   useEffect(() => {
     const getSurah = async () => {
       //fallback into '/' when the number is invalid
       if (number > 114 || isNaN(number) || number === null) {
-        alert('Invalid rout , Check the URL ')
+        alert("Invalid rout , Check the URL ");
         window.location.pathname = "/";
-        
+
         return;
       }
       // Check if data is present in local storage
@@ -214,6 +213,7 @@ export default function Surah() {
               surahDetails={surahDetails}
               number={number}
               currentScrolledAyah={currentScrolledAyah}
+              navigationType={navigationType}
             />
 
             <PageSettings
@@ -251,7 +251,7 @@ export default function Surah() {
                 </div>
               </div>
             </div>
-            <NextJuz darkMode={darkMode} number={number} />
+            <NextJuz darkMode={darkMode} number={number} fullData={fullData} />
           </>
         )
       )}

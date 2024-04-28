@@ -10,7 +10,7 @@ export default function SurahPage({
   clicked,
   handleToggleClicked,
   setCurrentScrolledAyah,
-  surahDetails
+  surahDetails,
 }) {
   const [ayahNumber, setAyahNumber] = useState(null);
   const [scrolledAyahNumber, setScrolledAyahNumber] = useState(null);
@@ -61,7 +61,6 @@ export default function SurahPage({
         }
       }, 0.5);
     };
-    
 
     window.addEventListener("scroll", handleScroll);
 
@@ -75,7 +74,6 @@ export default function SurahPage({
     setAyahNumber(Number(e.target.value));
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     handleToggleClicked();
@@ -83,7 +81,9 @@ export default function SurahPage({
     // Scroll to the specified ayah when submitted
     const element = document.getElementById(`ayah-${ayahNumber}`);
     if (ayahNumber > fullData.length)
-      alert(`Habibi, ${surahDetails.englishName} has ${fullData.length} ayahs only.`);
+      alert(
+        `Habibi, ${surahDetails.englishName} has ${fullData.length} ayahs only.`
+      );
     else {
       smoothScrollIntoViewIfNeeded(element, {
         behavior: "smooth",

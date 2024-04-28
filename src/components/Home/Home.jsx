@@ -23,16 +23,6 @@ export default function Home() {
   );
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const storedSelectedType = localStorage.getItem("selectedType");
-  //   console.log(storedSelectedType)
-  //   if (storedSelectedType === "passingSurah" || storedSelectedType === null) {
-  //     setSelectedType("surah");
-  //   } else {
-  //     setSelectedType("juz");
-  //   }
-  // }, []);
-  
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -116,7 +106,6 @@ export default function Home() {
     fetchData();
   }, []);
 
-
   const handleNavigate = (path, type) => {
     if (type === "passingSurah") {
       setSelectedType("surah");
@@ -128,7 +117,6 @@ export default function Home() {
     navigate(`${path}`, { state: { navigationType: type } });
   };
 
-
   return (
     <>
       {loading ? (
@@ -136,8 +124,9 @@ export default function Home() {
       ) : (
         <>
           <Header />
-          <SectionButton setSelectedType={setSelectedType} 
-          initialSelectedType={localStorage.getItem("selectedType")}
+          <SectionButton
+            setSelectedType={setSelectedType}
+            initialSelectedType={localStorage.getItem("selectedType")}
           />
           <div className="home-container">
             <div className="home-sec">
